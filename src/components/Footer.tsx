@@ -2,68 +2,65 @@ import Link from "next/link";
 import Logo from "./Logo";
 
 const footerLinks = {
-  "PERUVIAN UNIVERSITIES": [
+  "Peruvian Universities": [
     { label: "Landing 1", href: "#" },
     { label: "Landing 2", href: "#" },
     { label: "Landing 3", href: "#" },
     { label: "Pricing 1", href: "#" },
   ],
-  "WHAT IS MUN": [
+  "What is MUN": [
     { label: "About", href: "/about" },
     { label: "Blog 1", href: "#" },
     { label: "Blog 2", href: "#" },
   ],
-  "WHAT DO WE DO": [
+  "What do we do": [
     { label: "Sign up", href: "#" },
     { label: "Log in", href: "#" },
   ],
-  "CONTACT US": [
+  "Contact us": [
     { label: "Sign up", href: "#" },
     { label: "Log in", href: "#" },
   ],
 };
-
-const socialLinks = [
-  { label: "Facebook", href: "#", icon: "f" },
-  { label: "LinkedIn", href: "#", icon: "in" },
-  { label: "X", href: "#", icon: "x" },
-  { label: "YouTube", href: "#", icon: "yt" },
-  { label: "Instagram", href: "#", icon: "ig" },
-];
+const footerDescription =
+  "Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.";
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral-800 text-white">
+    <footer className="bg-pu-dark text-white">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-6 gap-10">
           {/* Brand column */}
           <div className="md:col-span-2">
             <Logo variant="white" />
-            <div className="mt-6 space-y-1 text-sm text-neutral-400">
-              <p className="font-body font-semibold text-neutral-300 uppercase text-xs tracking-wider mb-3">
+            <div className="mt-6 space-y-1 text-sm text-white/70">
+              <p className="font-body font-semibold text-white/80 uppercase text-xs tracking-wider mb-3">
                 Address
               </p>
               <p>1435 Wellington Road</p>
               <p>Windsor, Vic 3181</p>
               <p>Australia</p>
             </div>
-            <div className="mt-4 space-y-1 text-sm text-neutral-400">
+            <div className="mt-4 space-y-1 text-sm text-white/70">
               <p>
-                <span className="font-semibold text-neutral-300">Email</span>
+                <span className="font-semibold text-white/80">Email</span>
               </p>
               <a
-                href="mailto:hello@peruvianuniversities.com"
+                href="mailto:hello@stembiotech.com"
                 className="hover:text-pu-cyan transition-colors"
               >
-                hello@peruvianuniversities.com
+                hello@stembiotech.com
               </a>
             </div>
-            <div className="mt-4 text-sm text-neutral-400">
+            <div className="mt-4 text-sm text-white/70">
               <p>
-                <span className="font-semibold text-neutral-300">Phone</span>
+                <span className="font-semibold text-white/80">Phone</span>
               </p>
-              <a href="tel:+31505173821" className="hover:text-pu-cyan transition-colors">
-                +31 505 173 821
+              <a
+                href="tel:+61392817382"
+                className="hover:text-pu-cyan transition-colors"
+              >
+                +613 9281 7382
               </a>
             </div>
           </div>
@@ -71,7 +68,7 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h3 className="font-condensed text-xs font-bold uppercase tracking-widest text-white mb-4">
+              <h3 className="font-condensed text-xs font-bold tracking-widest uppercase text-white mb-4">
                 {title}
               </h3>
               <ul className="space-y-2">
@@ -79,7 +76,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-neutral-400 hover:text-white transition-colors"
+                      className="text-sm text-white/70 hover:text-white transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -91,27 +88,24 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-neutral-700 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-neutral-500">
-            © Todos los derechos reservados
-          </p>
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-xs text-white/50">© Torem ipsum dolor sit amet</p>
 
-          {/* Social icons */}
           <div className="flex items-center gap-3">
-            {socialLinks.map((social) => (
+            {["Facebook", "Instagram", "LinkedIn", "X"].map((network) => (
               <a
-                key={social.label}
-                href={social.href}
-                aria-label={social.label}
-                className="w-8 h-8 rounded-full border border-neutral-600 flex items-center justify-center text-neutral-400 hover:border-pu-cyan hover:text-pu-cyan transition-colors text-xs font-bold"
+                key={network}
+                href="#"
+                aria-label={network}
+                className="h-8 w-8 rounded-full border border-white/30 flex items-center justify-center text-[10px] font-condensed text-white/60 hover:text-white hover:border-white transition-colors"
               >
-                {social.icon}
+                {network.slice(0, 1)}
               </a>
             ))}
           </div>
 
           {/* Footer nav */}
-          <div className="flex items-center gap-4 text-xs text-neutral-500">
+          <div className="flex items-center gap-4 text-xs text-white/50">
             <a href="#" className="hover:text-white transition-colors">
               Style Guide
             </a>
@@ -126,6 +120,10 @@ export default function Footer() {
             </a>
           </div>
         </div>
+
+        <p className="mt-6 text-xs text-white/40 leading-relaxed">
+          {footerDescription}
+        </p>
       </div>
     </footer>
   );
