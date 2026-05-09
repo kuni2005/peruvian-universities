@@ -1,60 +1,67 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
+import ColorStripe from "@/components/ColorStripe";
 
 export default function AccionPeruPage() {
   return (
     <>
-      <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 bg-white">
         {/* Hero */}
-        <section className="mx-auto max-w-7xl px-6 pt-10 pb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-12">
-            <h1 className="font-bebas uppercase text-5xl md:text-6xl lg:text-7xl leading-[0.9] text-neutral-900">
-              Acción Perú: un ecosistema de proyectos que generan impacto
-            </h1>
-            <p className="font-body text-neutral-600 text-base leading-relaxed md:pt-4">
-              Peruvian Universities es más allá de las competencias de debate.
-              Somos una plataforma donde el talento se transforma en iniciativas
-              reales: desde conferencias internacionales hasta proyectos sociales
-              que generan impacto en el Perú.
-            </p>
-          </div>
-
-          {/* Hero image */}
-          <div className="rounded-3xl overflow-hidden">
-            <ImagePlaceholder
-              src="/assets/images/accion-peru/hero.jpg"
-              alt="Proyectos de impacto Acción Perú"
-              aspectRatio="aspect-[16/7]"
-              className="rounded-3xl"
-            />
+        <section className="relative text-white">
+          <ImagePlaceholder
+            src="/assets/images/accion-peru/hero.jpg"
+            alt="Proyectos de impacto Acción Perú"
+            className="absolute inset-0 h-full w-full"
+          />
+          <div className="absolute inset-0 bg-black/45" />
+          <Navbar variant="transparent" />
+          <div className="relative z-10">
+            <div className="mx-auto max-w-7xl px-6 pt-28 md:pt-36 pb-16 md:pb-24">
+              <div className="min-h-[60svh] md:min-h-[65svh] flex items-end">
+                <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
+                  <h1 className="md:col-span-7 font-bebas uppercase leading-[0.9] text-5xl md:text-7xl lg:text-8xl">
+                    Acción Perú: un ecosistema de proyectos que generan impacto
+                  </h1>
+                  <div className="md:col-span-5 md:justify-self-end max-w-md">
+                    <p className="font-body text-white/80 text-sm md:text-base leading-relaxed">
+                      Peruvian Universities es más allá de las competencias de
+                      debate. Somos una plataforma donde el talento se transforma
+                      en iniciativas reales: desde conferencias internacionales
+                      hasta proyectos sociales que generan impacto en el Perú.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
+        <ColorStripe />
 
         {/* Mission statement */}
-        <section className="mx-auto max-w-7xl px-6 pb-20 md:pb-24">
+        <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
           <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">
-            Nuestro propósito
+            Nuestra propuesta
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <h2 className="font-bebas uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.92]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+            <h2 className="md:col-span-6 font-bebas uppercase text-3xl md:text-4xl lg:text-5xl leading-[0.95]">
               Formamos líderes que pasan a la acción
             </h2>
-            <p className="font-body text-neutral-600 text-base leading-relaxed md:pt-2">
+            <p className="md:col-span-6 font-body text-neutral-600 text-sm md:text-base leading-relaxed md:pt-2">
               Creemos que el liderazgo no se queda en el discurso. Por eso,
               impulsamos proyectos que permiten a nuestros miembros aplicar sus
               habilidades en contextos reales, combinando pensamiento
               estratégico, organización y compromiso social.
             </p>
           </div>
+          <div className="mt-10 border-t border-neutral-200" />
         </section>
 
         {/* Project cards — Conferences */}
-        <section className="mx-auto max-w-7xl px-6 pb-20 md:pb-24">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <section className="mx-auto max-w-7xl px-6 pb-16 md:pb-24">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
             {/* Main large card */}
-            <div className="md:col-span-2 relative rounded-3xl overflow-hidden group">
+            <div className="md:col-span-8 relative rounded-3xl overflow-hidden group">
               <div className="aspect-[4/3]">
                 <ImagePlaceholder
                   src="/assets/images/accion-peru/worldmun.jpg"
@@ -64,59 +71,58 @@ export default function AccionPeruPage() {
                 />
               </div>
               {/* Overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-neutral-900/70 via-neutral-900/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-neutral-900/80 via-neutral-900/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8">
-                <p className="font-body text-neutral-300 text-sm mb-3 leading-relaxed">
-                  Participamos en World Model United Nations, una de las
-                  conferencias más prestigiosas del mundo. En 2026, nuestro
-                  equipo continúa llevando el nombre del Perú a escenarios
-                  internacionales, destacándose por su preparación y excelencia.
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-2">
-                    <p className="font-condensed text-xs font-bold uppercase tracking-wider text-white">
-                      Logo
+                <div className="flex items-end justify-between gap-6">
+                  <div>
+                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-3 inline-block mb-4">
+                      <p className="font-condensed text-[10px] font-bold uppercase tracking-wider text-white/80">
+                        Harvard World Model United Nations
+                      </p>
+                      <p className="font-bebas text-2xl text-white">
+                        Lima 2026
+                      </p>
+                    </div>
+                    <p className="font-body text-neutral-200 text-sm leading-relaxed max-w-md">
+                      Participamos en World Model United Nations, una de las
+                      conferencias más prestigiosas del mundo. En 2026, nuestro
+                      equipo continúa llevando el nombre del Perú a escenarios
+                      internacionales, destacándose por su preparación y
+                      excelencia.
                     </p>
-                    <p className="font-bebas text-lg text-white">WorldMUN 2026</p>
                   </div>
+                  <span className="h-10 w-10 rounded-full border border-white/50 flex items-center justify-center text-white text-lg">
+                    ↗
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Two smaller cards */}
-            <div className="flex flex-col gap-4">
+            <div className="md:col-span-4 flex flex-col gap-4">
               {[
                 {
                   title: "PeruMUN",
-                  img: "/assets/images/accion-peru/perumun.jpg",
-                  description: "Conferencia de Model United Nations a nivel nacional.",
+                  img: "/assets/images/accion-peru/perumun-logo.svg",
                 },
                 {
                   title: "MOCAN",
-                  img: "/assets/images/accion-peru/mocan.jpg",
-                  description: "Modelo de la Comunidad Andina de Naciones.",
+                  img: "/assets/images/accion-peru/mocan-logo.svg",
                 },
               ].map((project) => (
                 <div
                   key={project.title}
-                  className="relative rounded-3xl overflow-hidden group flex-1"
+                  className="relative rounded-3xl overflow-hidden group flex-1 bg-pu-dark"
                 >
-                  <div className="h-full min-h-40">
+                  <div className="h-full min-h-40 flex items-center justify-center">
                     <ImagePlaceholder
                       src={project.img}
                       alt={project.title}
                       aspectRatio=""
-                      className="w-full h-full group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain p-10"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-linear-to-t from-neutral-900/60 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-3 py-2 inline-block">
-                      <p className="font-bebas text-base text-white leading-tight">
-                        {project.title}
-                      </p>
-                    </div>
-                  </div>
+                  <div className="absolute inset-0 border border-white/10 rounded-3xl" />
                 </div>
               ))}
             </div>
@@ -124,44 +130,41 @@ export default function AccionPeruPage() {
         </section>
 
         {/* Ollas Comunes */}
-        <section className="bg-neutral-100 py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">
-                  Apoyo directo a comunidades
-                </p>
-                <h2 className="font-bebas uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.92] mb-6">
-                  Ollas Comunes
-                </h2>
-                <p className="font-body text-neutral-600 text-base leading-relaxed">
-                  Trabajamos junto a comunidades locales apoyando ollas comunes,
-                  contribuyendo con recursos y organización para atender a
-                  familias en situación vulnerable.
-                </p>
-              </div>
-              <div className="rounded-2xl overflow-hidden">
-                <ImagePlaceholder
-                  src="/assets/images/accion-peru/ollas-comunes.jpg"
-                  alt="Proyecto Ollas Comunes"
-                  aspectRatio="aspect-[4/3]"
-                  className="rounded-2xl"
-                />
-              </div>
+        <section className="relative text-white">
+          <ImagePlaceholder
+            src="/assets/images/accion-peru/ollas-comunes.jpg"
+            alt="Proyecto Ollas Comunes"
+            className="absolute inset-0 h-full w-full"
+          />
+          <div className="absolute inset-0 bg-black/55" />
+          <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:py-28">
+            <div className="max-w-lg">
+              <p className="font-condensed text-xs font-bold uppercase tracking-widest text-white/70 mb-4">
+                Apoyo directo a comunidades
+              </p>
+              <h2 className="font-bebas uppercase text-4xl md:text-5xl leading-[0.92] mb-4">
+                Ollas Comunes
+              </h2>
+              <p className="font-body text-white/80 text-sm md:text-base leading-relaxed">
+                Trabajamos junto a comunidades locales apoyando ollas comunes,
+                contribuyendo con recursos y organización para atender a familias
+                en situación vulnerable.
+              </p>
             </div>
           </div>
         </section>
+        <ColorStripe />
 
         {/* Collab Beneficencia de Lima */}
-        <section className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+        <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
           <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">
             Alianzas para un mayor impacto
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-12">
-            <h2 className="font-bebas uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.92]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start mb-12">
+            <h2 className="md:col-span-6 font-bebas uppercase text-3xl md:text-4xl lg:text-5xl leading-[0.95]">
               Collab con la Beneficencia de Lima
             </h2>
-            <p className="font-body text-neutral-600 text-base leading-relaxed md:pt-2">
+            <p className="md:col-span-6 font-body text-neutral-600 text-sm md:text-base leading-relaxed md:pt-2">
               Colaboramos con la Beneficencia de Lima en iniciativas orientadas
               al bienestar social, ampliando el alcance de nuestras acciones y
               fortaleciendo nuestros compromisos con la comunidad.
@@ -170,22 +173,22 @@ export default function AccionPeruPage() {
 
           {/* Stats grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="md:col-span-1 rounded-2xl overflow-hidden">
+            <div className="col-span-2 rounded-2xl overflow-hidden">
               <ImagePlaceholder
                 src="/assets/images/accion-peru/beneficencia-1.jpg"
                 alt="Colaboración Beneficencia de Lima"
-                aspectRatio="aspect-square"
+                aspectRatio="aspect-[3/2]"
                 className="rounded-2xl"
               />
             </div>
-            <div className="bg-pu-dark rounded-2xl p-8 flex flex-col justify-center">
+            <div className="bg-pu-dark rounded-2xl p-8 flex flex-col justify-between">
               <p className="font-bebas text-5xl text-white">+10</p>
-              <p className="font-body text-neutral-300 text-xs mt-2 leading-snug">
+              <p className="font-body text-white/70 text-xs mt-2 leading-snug">
                 Proyectos desarrollados en conjunto con la Municipalidad de Lima,
-                con impacto social y participación comunitaria.
+                enfocados en impacto social y participación comunitaria.
               </p>
             </div>
-            <div className="md:col-span-1 rounded-2xl overflow-hidden">
+            <div className="rounded-2xl overflow-hidden">
               <ImagePlaceholder
                 src="/assets/images/accion-peru/beneficencia-2.jpg"
                 alt="Actividades con la comunidad"
@@ -193,15 +196,32 @@ export default function AccionPeruPage() {
                 className="rounded-2xl"
               />
             </div>
-            <div className="bg-neutral-100 rounded-2xl p-8 flex flex-col justify-center">
-              <p className="font-bebas text-5xl text-neutral-900">95%</p>
-              <p className="font-body text-neutral-500 text-xs mt-2 leading-snug">
+            <div className="col-span-2 bg-pu-cyan rounded-2xl p-8 flex flex-col justify-between text-white">
+              <p className="font-bebas text-5xl text-white">95%</p>
+              <p className="font-body text-white/90 text-xs mt-2 leading-snug">
                 De nuestros miembros participan activamente en iniciativas
                 sociales, fortaleciendo su compromiso con la comunidad.
               </p>
             </div>
+            <div className="rounded-2xl overflow-hidden">
+              <ImagePlaceholder
+                src="/assets/images/accion-peru/beneficencia-3.jpg"
+                alt="Actividades comunitarias"
+                aspectRatio="aspect-square"
+                className="rounded-2xl"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden">
+              <ImagePlaceholder
+                src="/assets/images/accion-peru/beneficencia-4.jpg"
+                alt="Voluntariado"
+                aspectRatio="aspect-square"
+                className="rounded-2xl"
+              />
+            </div>
           </div>
         </section>
+        <ColorStripe />
       </main>
       <Footer />
     </>
