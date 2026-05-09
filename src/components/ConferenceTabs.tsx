@@ -3,7 +3,24 @@
 import { useState } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
 
-const conferences = {
+type Coach = {
+  name: string;
+  role: string;
+  image?: string;
+};
+
+type ConferenceYear = {
+  year: string;
+  title: string;
+  description: string;
+  coaches: Coach[];
+};
+
+type ConferenceData = {
+  years: ConferenceYear[];
+};
+
+const conferences: Record<string, ConferenceData> = {
   WorldMUN: {
     years: [
       {
@@ -11,7 +28,13 @@ const conferences = {
         title: "WorldMUN",
         description:
           "WorldMUN es una de las conferencias de Model United Nations más prestigiosas del mundo. En este espacio, nuestros delegados compiten junto a estudiantes de universidades de élite, desarrollando habilidades de negociación, liderazgo y diplomacia en un entorno multicultural de alto nivel.",
-        coaches: [{ name: "Name", role: "CEO" }],
+        coaches: [
+          {
+            name: "Sandro Rodríguez",
+            role: "CEO",
+            image: "/assets/images/team/sandro-rodriguez.jpg",
+          },
+        ],
       },
       {
         year: "2006",
@@ -168,15 +191,15 @@ export default function ConferenceTabs() {
     <div>
       {/* Conference type tabs */}
       <div className="overflow-x-auto">
-        <div className="flex gap-0 border-b border-neutral-200 min-w-max">
+        <div className="flex gap-8 border-b border-neutral-200 min-w-max">
           {conferenceKeys.map((key) => (
             <button
               key={key}
               onClick={() => handleConferenceChange(key)}
-              className={`px-6 py-3 font-condensed text-sm font-bold uppercase tracking-wider transition-colors whitespace-nowrap ${
+              className={`pb-3 font-condensed text-xs font-bold uppercase tracking-widest transition-colors whitespace-nowrap ${
                 activeConference === key
                   ? "text-neutral-900 border-b-2 border-neutral-900 -mb-px"
-                  : "text-neutral-400 hover:text-neutral-700"
+                  : "text-neutral-300 hover:text-neutral-600"
               }`}
             >
               {key}
@@ -187,15 +210,15 @@ export default function ConferenceTabs() {
 
       {/* Year selector */}
       <div className="mt-6 overflow-x-auto">
-        <div className="flex gap-0 border-b border-neutral-100 min-w-max">
+        <div className="flex gap-6 border-b border-neutral-200 min-w-max">
           {currentConference.years.map((event, i) => (
             <button
               key={event.year}
               onClick={() => setActiveYearIndex(i)}
-              className={`px-5 py-2 font-condensed text-sm font-bold transition-colors whitespace-nowrap ${
+              className={`pb-3 font-condensed text-xs font-bold tracking-widest transition-colors whitespace-nowrap ${
                 i === activeYearIndex
-                  ? "text-neutral-900 border-b-2 border-pu-cyan -mb-px"
-                  : "text-neutral-400 hover:text-neutral-600"
+                  ? "text-neutral-900 border-b-2 border-neutral-900 -mb-px"
+                  : "text-neutral-300 hover:text-neutral-500"
               }`}
             >
               {event.year}
@@ -205,50 +228,59 @@ export default function ConferenceTabs() {
       </div>
 
       {/* Conference detail */}
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_minmax(0,1fr)] gap-8 md:gap-0 md:divide-x md:divide-neutral-200 items-start">
         {/* Year number */}
-        <div>
-          <p className="font-bebas text-8xl md:text-9xl text-neutral-900 leading-none">
+        <div className="md:pr-8">
+          <p className="font-bebas text-7xl sm:text-8xl md:text-[7.5rem] text-pu-dark leading-none">
             {currentYear.year}
           </p>
         </div>
 
         {/* Title + description */}
-        <div>
-          <h3 className="font-bebas uppercase text-2xl md:text-3xl leading-tight text-neutral-900 mb-4">
+        <div className="md:px-8">
+          <h3 className="font-bebas uppercase text-xl md:text-2xl leading-tight text-neutral-900 mb-4">
             {currentYear.title}
           </h3>
-          <p className="font-body text-neutral-600 text-sm leading-relaxed">
+          <p className="font-body text-neutral-500 text-xs sm:text-sm leading-relaxed">
             {currentYear.description}
           </p>
         </div>
 
         {/* Coaches */}
-        <div>
-          <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">
+        <div className="md:pl-8">
+          <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500 mb-4">
             Coaches
           </p>
-          {currentYear.coaches.map((coach) => (
+          {currentYear.coaches.map((coach) => {
+            const coachImage =
+              coach.image ??
+              `/assets/images/team/${coach.name
+                .toLowerCase()
+                .replace(/ /g, "-")}.jpg`;
+
+            return (
             <div
               key={coach.name}
-              className="rounded-2xl overflow-hidden border border-neutral-100"
+              className="relative rounded-2xl overflow-hidden bg-neutral-100"
             >
               <ImagePlaceholder
-                src={`/assets/images/team/${coach.name.toLowerCase().replace(/ /g, "-")}.jpg`}
+                src={coachImage}
                 alt={coach.name}
-                aspectRatio="aspect-[4/3]"
-                className="rounded-t-2xl"
+                aspectRatio="aspect-[3/4]"
+                className="h-full w-full"
               />
-              <div className="p-4">
-                <p className="font-condensed text-xs font-bold uppercase tracking-wider text-neutral-400">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-4 left-4">
+                <p className="font-condensed text-[10px] font-bold uppercase tracking-widest text-white/80">
                   {coach.role}
                 </p>
-                <p className="font-bebas text-xl text-neutral-900 mt-0.5">
+                <p className="font-bebas text-2xl text-white leading-none">
                   {coach.name}
                 </p>
               </div>
             </div>
-          ))}
+          );
+          })}
         </div>
       </div>
     </div>
