@@ -1,71 +1,64 @@
-"use client";
-
-import { useState } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
 
 const teamMembers = [
-  { name: "Ana García", role: "CEO", img: "/assets/images/team/ana-garcia.jpg" },
-  { name: "Carlos Mendoza", role: "Head Coach", img: "/assets/images/team/carlos-mendoza.jpg" },
-  { name: "Lucía Torres", role: "Academic Director", img: "/assets/images/team/lucia-torres.jpg" },
-  { name: "Rafael Vega", role: "Operations Director", img: "/assets/images/team/rafael-vega.jpg" },
-  { name: "Sofía Paredes", role: "Training Lead", img: "/assets/images/team/sofia-paredes.jpg" },
-  { name: "Diego Quispe", role: "International Relations", img: "/assets/images/team/diego-quispe.jpg" },
+  {
+    name: "Sandro Rodríguez",
+    role: "Verbal Commendation",
+    img: "/assets/images/team/sandro-rodriguez.jpg",
+  },
+  {
+    name: "Maria Gonzalez",
+    role: "Employee of the Month",
+    img: "/assets/images/team/maria-gonzalez.jpg",
+  },
+  {
+    name: "John Smith",
+    role: "Project Completion",
+    img: "/assets/images/team/john-smith.jpg",
+  },
+  {
+    name: "Emily Chen",
+    role: "Outstanding Performance",
+    img: "/assets/images/team/emily-chen.jpg",
+  },
+  {
+    name: "Raj Patel",
+    role: "Team Leadership",
+    img: "/assets/images/team/raj-patel.jpg",
+  },
+  {
+    name: "Sophia Lee",
+    role: "Innovation Award",
+    img: "/assets/images/team/sophia-lee.jpg",
+  },
 ];
 
-const VISIBLE = 4;
-
 export default function TeamCarousel() {
-  const [start, setStart] = useState(0);
-
-  const prev = () => setStart((s) => Math.max(0, s - 1));
-  const next = () =>
-    setStart((s) => Math.min(teamMembers.length - VISIBLE, s + 1));
-
-  const visible = teamMembers.slice(start, start + VISIBLE);
-
   return (
-    <div>
-      {/* Navigation arrows */}
-      <div className="flex justify-end gap-2 mb-6">
-        <button
-          onClick={prev}
-          disabled={start === 0}
-          aria-label="Previous members"
-          className="w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-600 hover:border-neutral-900 hover:text-neutral-900 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-        >
-          ←
-        </button>
-        <button
-          onClick={next}
-          disabled={start >= teamMembers.length - VISIBLE}
-          aria-label="Next members"
-          className="w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-600 hover:border-neutral-900 hover:text-neutral-900 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-        >
-          →
-        </button>
-      </div>
-
-      {/* Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {visible.map((member) => (
-          <div key={member.name} className="group">
-            <div className="rounded-2xl overflow-hidden mb-3">
-              <ImagePlaceholder
-                src={member.img}
-                alt={member.name}
-                aspectRatio="aspect-[3/4]"
-                className="rounded-2xl group-hover:scale-105 transition-transform duration-300"
-              />
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {teamMembers.map((member) => (
+        <div key={member.name} className="rounded-2xl overflow-hidden bg-neutral-200 relative">
+          <ImagePlaceholder
+            src={member.img}
+            alt={member.name}
+            aspectRatio="aspect-[3/4]"
+            className="rounded-2xl"
+          />
+          <div className="absolute inset-x-4 bottom-4">
+            <div className="bg-white rounded-xl px-4 py-3 shadow-sm flex items-center justify-between gap-3">
+              <div>
+                <p className="font-bebas text-lg text-neutral-900 leading-tight">
+                  {member.name}
+                </p>
+                <p className="text-xs text-neutral-500">{member.role}</p>
+              </div>
+              <span className="h-7 w-7 rounded-md border border-neutral-200 flex items-center justify-center text-[10px] font-bold text-neutral-500">
+                in
+              </span>
             </div>
-            <p className="font-condensed text-xs font-bold uppercase tracking-wider text-neutral-400">
-              {member.role}
-            </p>
-            <p className="font-bebas text-xl text-neutral-900 leading-tight mt-0.5">
-              {member.name}
-            </p>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }
