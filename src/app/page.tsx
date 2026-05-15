@@ -77,7 +77,7 @@ export default function HomePage() {
                 <ImagePlaceholder
                   src="/assets/images/home/about-community.jpg"
                   alt="Comunidad Peruvian Universities"
-                  aspectRatio="aspect-[4/3]"
+                  aspectRatio="aspect-square"
                   className="rounded-2xl"
                 />
               </div>
@@ -115,7 +115,7 @@ export default function HomePage() {
                 <ImagePlaceholder
                   src="/assets/images/home/mun-conference.jpg"
                   alt="Model United Nations conference"
-                  aspectRatio="aspect-[4/3]"
+                  aspectRatio="aspect-4/3"
                   className="rounded-2xl"
                 />
               </div>
@@ -142,7 +142,7 @@ export default function HomePage() {
               <ImagePlaceholder
                 src="/assets/images/home/skills-training.jpg"
                 alt="Entrenamiento de delegados"
-                aspectRatio="aspect-[4/3]"
+                aspectRatio="aspect-4/3"
                 className="rounded-2xl"
               />
             </div>
@@ -235,8 +235,17 @@ export default function HomePage() {
               </div>
               <a
                 href="https://wa.me/51928173821"
-                className="inline-flex items-center bg-pu-cyan text-white font-condensed font-bold text-sm px-6 py-2.5 rounded-full hover:brightness-110 transition"
+                className="inline-flex items-center gap-2 bg-pu-cyan text-white font-condensed font-bold text-sm px-6 py-2.5 rounded-full hover:brightness-110 transition"
               >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-4 h-4 shrink-0"
+                  aria-hidden="true"
+                >
+                  <path d="M12.001 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.046 22l4.978-1.37A9.963 9.963 0 0 0 12.001 22C17.524 22 22 17.523 22 12S17.524 2 12.001 2zm4.603 13.616c-.193.541-1.13 1.032-1.556 1.073-.4.038-.776.19-2.608-.544-2.194-.877-3.599-3.106-3.708-3.25-.108-.144-.882-1.172-.882-2.236 0-1.064.557-1.587.754-1.804.197-.216.43-.27.573-.27l.412.008c.132.006.31-.05.484.37.178.429.605 1.478.659 1.585.053.107.088.231.017.37-.07.14-.105.228-.209.35-.103.122-.218.273-.311.367-.103.103-.21.215-.09.422.12.207.532.879 1.143 1.424.785.698 1.447.914 1.653 1.016.207.103.327.086.449-.052.12-.138.52-.607.66-.815.138-.207.276-.172.465-.103.19.069 1.205.569 1.412.672.207.103.345.155.396.241.051.086.051.499-.142 1.04z" />
+                </svg>
                 Escríbenos por WhatsApp
               </a>
             </div>
@@ -244,7 +253,7 @@ export default function HomePage() {
               <ImagePlaceholder
                 src="/assets/images/home/contact.jpg"
                 alt="Equipo Peruvian Universities"
-                aspectRatio="aspect-[4/5]"
+                aspectRatio="aspect-4/5"
                 className="rounded-2xl"
               />
             </div>
