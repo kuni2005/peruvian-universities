@@ -8,7 +8,7 @@ interface LogoProps {
 export default function Logo({ variant = "dark", className = "" }: LogoProps) {
   const logoSrc = {
     cyan: "/assets/images/brand/logo-cyan.svg",
-    white: "/assets/images/brand/logo-white.svg",
+    white: "/assets/images/brand/img-logo.png",
     dark: "/assets/images/brand/logo-primary.svg",
   }[variant];
 

@@ -11,7 +11,7 @@ export default function HomePage() {
         {/* Hero */}
         <section className="relative text-white">
           <ImagePlaceholder
-            src="/assets/images/home/hero.jpg"
+            src="/assets/images/home/img-home.png"
             alt="Equipo de debate en conferencia"
             className="absolute inset-0 h-full w-full"
           />
@@ -41,25 +41,23 @@ export default function HomePage() {
         <ColorStripe />
 
         {/* About brief */}
-        <section className="relative bg-pu-gray">
+        <section className="relative bg-pu-gray overflow-hidden">
+          <span
+            aria-hidden="true"
+            className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 text-[22rem] font-bebas text-white/60 leading-none select-none pointer-events-none"
+          >
+            PU
+          </span>
           <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 relative">
-            <span
-              aria-hidden="true"
-              className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 text-[16rem] font-bebas text-white/70 leading-none"
-            >
-              PU
-            </span>
-            <div className="relative grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-              <div className="md:col-span-3">
-                <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
+              <div className="md:col-span-7">
+                <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-6">
                   Que es Peruvian Universities
                 </p>
-              </div>
-              <div className="md:col-span-5">
-                <h2 className="font-bebas uppercase text-3xl md:text-4xl lg:text-5xl leading-[0.95] mb-4 text-neutral-900">
+                <h2 className="font-bebas uppercase text-5xl md:text-6xl lg:text-7xl leading-[0.9] mb-6 text-neutral-900">
                   Una comunidad que transforma talento en liderazgo
                 </h2>
-                <p className="font-body text-neutral-600 text-sm md:text-base leading-relaxed mb-6">
+                <p className="font-body text-neutral-600 text-sm md:text-base leading-relaxed mb-8 max-w-lg">
                   Peruvian Universities es una organización dedicada a potenciar
                   el desarrollo académico y personal de sus miembros mediante el
                   debate y la participación en Model United Nations. Nuestro
@@ -73,12 +71,12 @@ export default function HomePage() {
                   Conoce más
                 </Link>
               </div>
-              <div className="md:col-span-4">
+              <div className="md:col-span-5">
                 <ImagePlaceholder
-                  src="/assets/images/home/about-community.jpg"
+                  src="/assets/images/home/img-home-2.png"
                   alt="Comunidad Peruvian Universities"
-                  aspectRatio="aspect-square"
-                  className="rounded-2xl"
+                  aspectRatio="aspect-[3/4]"
+                  className="rounded-2xl shadow-lg"
                 />
               </div>
             </div>
