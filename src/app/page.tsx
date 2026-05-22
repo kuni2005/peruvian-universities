@@ -152,7 +152,7 @@ export default function HomePage() {
               {/* Right col (5/12): foto */}
               <div className="md:col-span-5">
                 <ImagePlaceholder
-                  src="/assets/images/home/mun-conference.jpg"
+                  src="/assets/images/home/img-home-3.png"
                   alt="Model United Nations conference"
                   aspectRatio="aspect-[3/4]"
                   className="rounded-2xl"
