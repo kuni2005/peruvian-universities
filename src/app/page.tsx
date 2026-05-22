@@ -44,34 +44,41 @@ export default function HomePage() {
         <section className="relative bg-pu-gray overflow-hidden">
           <span
             aria-hidden="true"
-            className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 text-[22rem] font-bebas text-white/60 leading-none select-none pointer-events-none"
+            className="hidden md:block absolute -bottom-28 -left-6 font-bebas text-gray-300 opacity-15 leading-none select-none pointer-events-none text-[36rem]"
           >
             PU
           </span>
           <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 relative">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
-              <div className="md:col-span-7">
-                <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-0">
+              {/* Col 1: label */}
+              <div className="hidden md:block md:col-span-2 pr-8 pt-1">
+                <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500 underline decoration-neutral-500">
                   Que es Peruvian Universities
                 </p>
-                <h2 className="font-bebas uppercase text-5xl md:text-6xl lg:text-7xl leading-[0.9] mb-6 text-neutral-900">
+              </div>
+              {/* Col 2: contenido con borde izquierdo */}
+              <div className="md:col-span-6 md:border-l md:border-neutral-300 md:pl-12 flex flex-col justify-center gap-y-6">
+                <h2 className="font-bebas uppercase text-5xl md:text-6xl lg:text-7xl leading-[0.9] text-neutral-900">
                   Una comunidad que transforma talento en liderazgo
                 </h2>
-                <p className="font-body text-neutral-600 text-sm md:text-base leading-relaxed mb-8 max-w-lg">
+                <p className="font-body text-neutral-600 text-sm md:text-base leading-relaxed max-w-lg">
                   Peruvian Universities es una organización dedicada a potenciar
                   el desarrollo académico y personal de sus miembros mediante el
                   debate y la participación en Model United Nations. Nuestro
                   equipo ha destacado a nivel internacional, convirtiéndose en
                   uno de los más premiados en conferencias como Harvard WorldMUN.
                 </p>
-                <Link
-                  href="/about"
-                  className="inline-flex items-center bg-pu-cyan text-white font-condensed font-bold text-sm px-6 py-2.5 rounded-md hover:brightness-110 transition"
-                >
-                  Conoce más
-                </Link>
+                <div>
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center bg-pu-cyan text-white font-condensed font-bold text-sm px-6 py-2.5 rounded-md hover:brightness-110 transition"
+                  >
+                    Conoce más
+                  </Link>
+                </div>
               </div>
-              <div className="md:col-span-5">
+              {/* Col 3: foto */}
+              <div className="md:col-span-4 md:pl-10 mt-10 md:mt-0">
                 <ImagePlaceholder
                   src="/assets/images/home/img-home-2.png"
                   alt="Comunidad Peruvian Universities"
@@ -86,34 +93,68 @@ export default function HomePage() {
         {/* MUN Explanation — dark background */}
         <section className="bg-pu-dark">
           <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <p className="font-condensed text-xs font-bold uppercase tracking-widest text-pu-cyan mb-4">
-                  What is MUN
-                </p>
-                <h2 className="font-bebas uppercase text-3xl md:text-4xl lg:text-5xl leading-[0.95] text-white mb-6">
-                  ¿Qué es Model United Nations?
-                </h2>
-                <p className="font-body text-white/70 text-sm md:text-base leading-relaxed mb-8">
-                  Model United Nations (MUN) es una simulación académica donde
-                  los participantes representan a países dentro de comités de las
-                  Naciones Unidas, debatiendo problemáticas globales actuales. A
-                  través de investigación, análisis y argumentación, los
-                  delegados proponen soluciones a desafíos reales, desarrollando
-                  una visión crítica del mundo y su funcionamiento.
-                </p>
-                <Link
-                  href="/conferences"
-                  className="inline-flex items-center bg-pu-cyan text-white font-condensed font-bold text-sm px-6 py-2.5 rounded-md hover:brightness-110 transition"
-                >
-                  Descubre cómo funciona
-                </Link>
+            <h2 className="font-bebas uppercase text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-white mb-12">
+              ¿Qué es Model United Nations?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+              {/* Left col (7/12): descripción + bullets + testimonio */}
+              <div className="md:col-span-7 flex flex-col gap-y-6">
+                {/* Descripción */}
+                <div className="border-t border-white/20 pt-5">
+                  <p className="font-body text-white/70 text-sm md:text-base leading-relaxed">
+                    Model United Nations (MUN) es una simulación académica donde
+                    los participantes representan a países dentro de comités de las
+                    Naciones Unidas, debatiendo problemáticas globales actuales.
+                  </p>
+                </div>
+                {/* Bullets */}
+                <ul className="flex flex-col gap-y-3 border-t border-white/20 pt-5">
+                  {[
+                    "Desarrolla liderazgo internacional",
+                    "Mejora tu oratoria y negociación",
+                    "Debate problemáticas globales reales",
+                  ].map((item) => (
+                    <li key={item} className="flex items-center gap-3 font-body text-white/80 text-sm md:text-base">
+                      <span className="w-2.5 h-2.5 rounded-full bg-pu-cyan shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                {/* Testimonio */}
+                <div className="bg-white/5 border border-white/10 rounded-xl p-6 mt-2">
+                  <span className="font-bebas text-pu-cyan text-[5rem] leading-none block">"</span>
+                  <div className="border-t border-white/20 pt-5 mt-2">
+                    <p className="font-body text-white/70 text-sm leading-relaxed">
+                      I have always felt that the benefit that being part of PU has
+                      given me is a debt that I will not be able to pay. By being
+                      part of the team, debating and giving your best, as well as
+                      taking on new challenges within the team, you hope to give new
+                      members the same experience you have had, or even a better one.
+                    </p>
+                  </div>
+                  <div className="border-t border-white/20 mt-6 pt-5 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-white/20 shrink-0" />
+                      <div>
+                        <p className="font-condensed font-bold text-white text-xs uppercase tracking-wider">
+                          Miranda Paz
+                        </p>
+                        <p className="font-body text-white/50 text-xs">Sophomore Delegate</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 text-white/50">
+                      <button aria-label="Anterior" className="hover:text-white transition text-xl">←</button>
+                      <button aria-label="Siguiente" className="hover:text-white transition text-xl">→</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
+              {/* Right col (5/12): foto */}
+              <div className="md:col-span-5">
                 <ImagePlaceholder
                   src="/assets/images/home/mun-conference.jpg"
                   alt="Model United Nations conference"
-                  aspectRatio="aspect-4/3"
+                  aspectRatio="aspect-[3/4]"
                   className="rounded-2xl"
                 />
               </div>
