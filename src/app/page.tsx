@@ -93,38 +93,64 @@ export default function HomePage() {
         {/* MUN Explanation — dark background */}
         <section className="bg-pu-dark">
           <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-            <h2 className="font-bebas uppercase text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-white mb-12">
-              ¿Qué es Model United Nations?
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-              {/* Left col (7/12): descripción + bullets + testimonio */}
-              <div className="md:col-span-7 flex flex-col gap-y-6">
-                {/* Descripción */}
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-14 items-start md:items-stretch">
+              {/* Left col: título, descripción, bullets y testimonio */}
+              <div className="md:pr-12 md:border-r md:border-white/20 flex flex-col md:h-full min-w-0">
+                <h2 className="font-bebas uppercase text-5xl md:text-6xl lg:text-[4.5rem] leading-[0.95] text-white mb-8 md:mb-10">
+                  ¿Qué es Model United Nations?
+                </h2>
+
                 <div className="border-t border-white/20 pt-5">
-                  <p className="font-body text-white/70 text-sm md:text-base leading-relaxed">
+                  <p className="font-body text-white/80 text-sm md:text-base leading-relaxed">
                     Model United Nations (MUN) es una simulación académica donde
                     los participantes representan a países dentro de comités de las
                     Naciones Unidas, debatiendo problemáticas globales actuales.
                   </p>
                 </div>
-                {/* Bullets */}
-                <ul className="flex flex-col gap-y-3 border-t border-white/20 pt-5">
+
+                <ul className="border-t border-white/20">
                   {[
                     "Desarrolla liderazgo internacional",
                     "Mejora tu oratoria y negociación",
                     "Debate problemáticas globales reales",
                   ].map((item) => (
-                    <li key={item} className="flex items-center gap-3 font-body text-white/80 text-sm md:text-base">
-                      <span className="w-2.5 h-2.5 rounded-full bg-pu-cyan shrink-0" />
+                    <li
+                      key={item}
+                      className="flex items-center gap-3 py-4 border-b border-white/20 font-body text-white/90 text-sm md:text-base"
+                    >
+                      <span
+                        className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-pu-cyan"
+                        aria-hidden="true"
+                      >
+                        <svg
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          className="h-3 w-3 text-pu-dark"
+                        >
+                          <path
+                            d="M2.5 6.2 4.8 8.5 9.5 3.5"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
                       {item}
                     </li>
                   ))}
                 </ul>
-                {/* Testimonio */}
-                <div className="bg-white/5 border border-white/10 rounded-xl p-6 mt-2">
-                  <span className="font-bebas text-pu-cyan text-[5rem] leading-none block">"</span>
-                  <div className="border-t border-white/20 pt-5 mt-2">
-                    <p className="font-body text-white/70 text-sm leading-relaxed">
+
+                <div className="bg-[#004a5e] rounded-2xl px-6 py-7 md:px-8 md:py-8 mt-6 md:flex-1 md:flex md:flex-col">
+                  <span
+                    className="font-bebas text-pu-cyan leading-none block"
+                    style={{ fontSize: "clamp(3.5rem, 6vw, 5rem)" }}
+                    aria-hidden="true"
+                  >
+                    &ldquo;
+                  </span>
+                  <div className="border-t border-white/20 pt-5 md:flex-1">
+                    <p className="font-body text-white/80 text-sm leading-relaxed">
                       I have always felt that the benefit that being part of PU has
                       given me is a debt that I will not be able to pay. By being
                       part of the team, debating and giving your best, as well as
@@ -132,30 +158,45 @@ export default function HomePage() {
                       members the same experience you have had, or even a better one.
                     </p>
                   </div>
-                  <div className="border-t border-white/20 mt-6 pt-5 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-white/20 shrink-0" />
+                  <div className="border-t border-white/20 mt-6 pt-5 flex items-center justify-between gap-4 md:mt-auto">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-10 h-10 rounded-full bg-white/25 shrink-0" />
                       <div>
                         <p className="font-condensed font-bold text-white text-xs uppercase tracking-wider">
                           Miranda Paz
                         </p>
-                        <p className="font-body text-white/50 text-xs">Sophomore Delegate</p>
+                        <p className="font-body text-white/50 text-xs">
+                          Sophomore Delegate
+                        </p>
                       </div>
                     </div>
-                    <div className="flex gap-4 text-white/50">
-                      <button aria-label="Anterior" className="hover:text-white transition text-xl">←</button>
-                      <button aria-label="Siguiente" className="hover:text-white transition text-xl">→</button>
+                    <div className="flex gap-3 text-pu-cyan shrink-0">
+                      <button
+                        type="button"
+                        aria-label="Anterior"
+                        className="hover:text-white transition-colors text-2xl leading-none"
+                      >
+                        ←
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Siguiente"
+                        className="hover:text-white transition-colors text-2xl leading-none"
+                      >
+                        →
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* Right col (5/12): foto */}
-              <div className="md:col-span-5">
+
+              {/* Right col: foto 50% */}
+              <div className="md:pl-12 mt-10 md:mt-0 min-h-88 md:min-h-0 md:h-full min-w-0">
                 <ImagePlaceholder
                   src="/assets/images/home/img-home-3.png"
                   alt="Model United Nations conference"
-                  aspectRatio="aspect-[3/4]"
-                  className="rounded-2xl"
+                  aspectRatio="aspect-[3/4] md:aspect-auto"
+                  className="rounded-2xl w-full h-full min-h-88 md:min-h-full object-cover object-center"
                 />
               </div>
             </div>
