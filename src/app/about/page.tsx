@@ -42,25 +42,25 @@ export default function AboutPage() {
         <ColorStripe />
 
         {/* Stats */}
-        <section className="relative bg-white">
-          <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 relative">
-            <span
-              aria-hidden="true"
-              className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 text-[16rem] font-bebas text-neutral-100 leading-none"
-            >
-              PU
-            </span>
-            <div className="relative grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-              <div className="md:col-span-3">
-                <p className="font-bebas text-6xl md:text-7xl text-pu-dark leading-none">
-                  +10
+        <section className="relative bg-white overflow-hidden">
+          {/* Watermark PU en esquina inferior izquierda */}
+          <span
+            aria-hidden="true"
+            className="hidden md:block absolute left-0 bottom-0 translate-x-18 translate-y-1/4 text-[30rem] font-bebas text-neutral-900/10 leading-none select-none pointer-events-none"
+          >
+            PU
+          </span>
+          <div className="mx-auto max-w-7xl px-6 py-24 md:py-44 relative min-h-112 md:min-h-136 flex items-center">
+            {/* +10 y texto centrados y muy juntos */}
+            <div className="relative flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+              <p className="font-bebas text-8xl md:text-9xl lg:text-[8rem] text-pu-cyan leading-none">
+                +10
+              </p>
+              <div className="md:max-w-xl md:pt-1 text-center md:text-left">
+                <p className="font-condensed font-bold uppercase tracking-widest text-neutral-900 text-base md:text-lg">
+                  AÑOS DE EXPERIENCIA
                 </p>
-              </div>
-              <div className="md:col-span-6">
-                <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500">
-                  Años de experiencia
-                </p>
-                <p className="font-body text-neutral-500 text-sm md:text-base leading-relaxed mt-3">
+                <p className="font-body text-neutral-500 text-sm md:text-base lg:text-lg leading-relaxed mt-3">
                   A lo largo de los años, hemos consolidado un sistema de
                   formación que combina entrenamiento académico, pensamiento
                   estratégico y desarrollo personal.
@@ -71,15 +71,21 @@ export default function AboutPage() {
         </section>
 
         {/* Community — Mission, Vision, Values */}
-        <section className="bg-pu-dark text-white">
-          <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-            <p className="font-condensed text-xs font-bold uppercase tracking-widest text-pu-cyan mb-3">
-              Nuestro equipo
+        <section className="bg-pu-dark text-white relative overflow-hidden">
+          <span
+            aria-hidden="true"
+            className="hidden md:block absolute -right-28 -top-24 font-bebas text-white/5 leading-none select-none pointer-events-none text-[28rem]"
+          >
+            PU
+          </span>
+          <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 relative">
+            <p className="font-condensed text-xs font-bold uppercase tracking-widest text-pu-cyan/70 mb-4">
+              Nuestra esencia
             </p>
-            <h2 className="font-bebas uppercase text-3xl md:text-4xl leading-[0.95] mb-10 max-w-2xl">
+            <h2 className="font-bebas uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-10 max-w-3xl">
               Una comunidad que trasciende el debate
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 border-t border-white/10 divide-y md:divide-y-0 md:divide-x divide-white/10">
+            <div className="grid grid-cols-1 md:grid-cols-3 border-t border-white/15 divide-y md:divide-y-0 md:divide-x divide-white/15">
               {[
                 {
                   title: "Misión",
@@ -94,11 +100,11 @@ export default function AboutPage() {
                   body: "Nos regimos por la excelencia, el compromiso, la integridad y la colaboración. Creemos en el poder del diálogo, el respeto por la diversidad de ideas y la responsabilidad de generar un cambio positivo en la sociedad.",
                 },
               ].map((card) => (
-                <div key={card.title} className="py-10 md:px-8">
-                  <h3 className="font-condensed font-bold uppercase text-xs tracking-widest text-white mb-4">
+                <div key={card.title} className="py-12 md:py-14 md:px-10">
+                  <h3 className="font-condensed font-bold uppercase text-xs tracking-widest text-white mb-6">
                     {card.title}
                   </h3>
-                  <p className="font-body text-white/70 text-sm leading-relaxed">
+                  <p className="font-body text-white/70 text-sm md:text-[0.95rem] leading-relaxed max-w-md">
                     {card.body}
                   </p>
                 </div>
