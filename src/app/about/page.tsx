@@ -45,7 +45,7 @@ export default function AboutPage() {
         <section className="relative bg-white overflow-hidden">
           <span
             aria-hidden="true"
-            className="hidden md:block absolute -left-8 bottom-0 translate-y-1/4 text-[42rem] font-bebas text-neutral-900/[0.07] leading-none select-none pointer-events-none"
+            className="hidden md:block absolute -left-8 bottom-0 translate-y-1/4 text-[42rem] font-bebas text-gray-800/[0.07] leading-none select-none pointer-events-none"
           >
             PU
           </span>
@@ -72,7 +72,7 @@ export default function AboutPage() {
         <section className="bg-pu-dark text-white relative overflow-hidden">
           <span
             aria-hidden="true"
-            className="hidden md:block absolute -right-28 -top-24 font-bebas text-white/5 leading-none select-none pointer-events-none text-[28rem]"
+            className="hidden md:block absolute right-8 -top-10 font-bebas text-white/5 leading-none select-none pointer-events-none text-[28rem]"
           >
             PU
           </span>
@@ -80,7 +80,7 @@ export default function AboutPage() {
             <p className="font-condensed text-xs font-bold uppercase tracking-widest text-pu-cyan/70 mb-4">
               Nuestra esencia
             </p>
-            <h2 className="font-bebas uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-10 max-w-3xl">
+            <h2 className="font-bebas uppercase text-5xl leading-[0.95] mb-10 max-w-4xl">
               Una comunidad que trasciende el debate
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 border-t border-white/15 divide-y md:divide-y-0 md:divide-x divide-white/15">
@@ -98,11 +98,11 @@ export default function AboutPage() {
                   body: "Nos regimos por la excelencia, el compromiso, la integridad y la colaboración. Creemos en el poder del diálogo, el respeto por la diversidad de ideas y la responsabilidad de generar un cambio positivo en la sociedad.",
                 },
               ].map((card) => (
-                <div key={card.title} className="py-12 md:py-14 md:px-10">
-                  <h3 className="font-condensed font-bold uppercase text-xs tracking-widest text-white mb-6">
+                <div key={card.title} className="py-12 md:py-14 md:px-10 flex flex-col justify-start items-start min-h-80 md:min-h-90 h-full">
+                  <h3 className="font-bebas uppercase text-2xl md:text-3xl text-white tracking-wide">
                     {card.title}
                   </h3>
-                  <p className="font-body text-white/70 text-sm md:text-[0.95rem] leading-relaxed max-w-md">
+                  <p className="font-body text-white/70 text-sm md:text-[0.95rem] leading-relaxed max-w-md mt-20">
                     {card.body}
                   </p>
                 </div>
