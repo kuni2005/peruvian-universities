@@ -81,15 +81,15 @@ export default function HistoryTimeline() {
   return (
     <div>
       {/* Year tabs */}
-      <div className="overflow-x-auto">
-        <div className="min-w-max border-b border-neutral-200">
+      <div>
+        <div className="flex items-center gap-4 md:gap-6 border-b border-neutral-200">
           {timelineEvents.map((event, i) => (
             <button
               key={event.year}
               onClick={() => setActiveIndex(i)}
               className={[
-                "font-condensed text-xs font-bold uppercase tracking-widest transition-colors",
-                "px-0 mr-12 pb-5",
+                "font-condensed text-md font-bold uppercase tracking-wider transition-colors",
+                "px-2 md:px-3 mr-4 md:mr-6 pb-4",
                 i === activeIndex
                   ? "text-neutral-900 border-b-2 border-neutral-900"
                   : "text-neutral-300 hover:text-neutral-600 border-b-2 border-transparent",
@@ -102,7 +102,7 @@ export default function HistoryTimeline() {
       </div>
 
       {/* Active event detail */}
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-start md:gap-0 md:border-t md:border-neutral-200">
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-start md:gap-0">
         {/* Large year */}
         <div className="md:col-span-4 md:py-14 md:pr-10">
           <p className="font-bebas text-7xl md:text-8xl lg:text-9xl text-pu-dark leading-none">
