@@ -43,24 +43,22 @@ export default function AboutPage() {
 
         {/* Stats */}
         <section className="relative bg-white overflow-hidden">
-          {/* Watermark PU en esquina inferior izquierda */}
           <span
             aria-hidden="true"
-            className="hidden md:block absolute left-0 bottom-0 translate-x-18 translate-y-1/4 text-[30rem] font-bebas text-neutral-900/10 leading-none select-none pointer-events-none"
+            className="hidden md:block absolute left-0 bottom-0 translate-x-4 translate-y-1/4 text-[32rem] font-bebas text-neutral-900/[0.06] leading-none select-none pointer-events-none"
           >
             PU
           </span>
-          <div className="mx-auto max-w-7xl px-6 py-24 md:py-44 relative min-h-112 md:min-h-136 flex items-center">
-            {/* +10 y texto centrados y muy juntos */}
-            <div className="relative flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
-              <p className="font-bebas text-8xl md:text-9xl lg:text-[8rem] text-pu-cyan leading-none">
+          <div className="mx-auto max-w-7xl px-6 py-16 md:py-28 relative flex items-center justify-center">
+            <div className="relative flex flex-row items-center justify-center gap-8 md:gap-12">
+              <p className="font-bebas text-[6rem] md:text-[9rem] lg:text-[11rem] text-pu-cyan leading-none shrink-0">
                 +10
               </p>
-              <div className="md:max-w-xl md:pt-1 text-center md:text-left">
-                <p className="font-condensed font-bold uppercase tracking-widest text-neutral-900 text-base md:text-lg">
+              <div className="max-w-sm">
+                <p className="font-bebas uppercase text-neutral-900 text-2xl md:text-3xl lg:text-4xl leading-tight">
                   AÑOS DE EXPERIENCIA
                 </p>
-                <p className="font-body text-neutral-500 text-sm md:text-base lg:text-lg leading-relaxed mt-3">
+                <p className="font-body text-neutral-500 text-sm md:text-base leading-relaxed mt-3">
                   A lo largo de los años, hemos consolidado un sistema de
                   formación que combina entrenamiento académico, pensamiento
                   estratégico y desarrollo personal.
