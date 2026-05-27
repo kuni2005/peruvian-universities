@@ -45,13 +45,13 @@ export default function AboutPage() {
         <section className="relative bg-white overflow-hidden">
           <span
             aria-hidden="true"
-            className="hidden md:block absolute left-0 bottom-0 translate-x-4 translate-y-1/4 text-[32rem] font-bebas text-neutral-900/[0.06] leading-none select-none pointer-events-none"
+            className="hidden md:block absolute -left-8 bottom-0 translate-y-1/4 text-[42rem] font-bebas text-neutral-900/[0.07] leading-none select-none pointer-events-none"
           >
             PU
           </span>
-          <div className="mx-auto max-w-7xl px-6 py-16 md:py-28 relative flex items-center justify-center">
+          <div className="mx-auto max-w-7xl px-6 pt-12 pb-28 md:pt-42 md:pb-48 relative flex items-end justify-center">
             <div className="relative flex flex-row items-center justify-center gap-8 md:gap-12">
-              <p className="font-bebas text-[6rem] md:text-[9rem] lg:text-[11rem] text-pu-cyan leading-none shrink-0">
+              <p className="font-bebas text-[8rem] md:text-[12rem] lg:text-[15rem] text-pu-cyan leading-none shrink-0">
                 +10
               </p>
               <div className="max-w-sm">
