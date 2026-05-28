@@ -9,66 +9,77 @@ const timelineEvents = [
     displayYear: "2004",
     title: "The creation of Círculo de Estudios de las Naciones Unidas (CENU)",
     body: "Se crea el Círculo de Estudios de las Naciones Unidas (CENU), sentando las bases de lo que hoy es Peruvian Universities. Este fue el primer paso hacia la formación de una comunidad enfocada en el debate, el análisis global y el liderazgo estudiantil.",
+    img: "/assets/images/about/img-year.JPG",
   },
   {
     year: "2006",
     displayYear: "2006",
     title: "Fundación de la comunidad",
     body: "Se consolidan los primeros esfuerzos de debate universitario en Lima, marcando el inicio de un proyecto académico que luego crecería a nivel nacional.",
+    img: "/assets/images/about/img-year.JPG",
   },
   {
     year: "2008",
     displayYear: "2008",
     title: "Primera participación en Harvard WorldMUN",
     body: "Peruvian Universities debuta en Harvard WorldMUN, una de las conferencias más prestigiosas del mundo, iniciando una tradición de excelencia internacional.",
+    img: "/assets/images/about/img-year.JPG",
   },
   {
     year: "2010",
     displayYear: "2010",
     title: "Reconocimiento internacional",
     body: "El equipo es reconocido por universidades de talla mundial por su desempeño en debate universitario.",
+    img: "/assets/images/about/img-year.JPG",
   },
   {
     year: "2014",
     displayYear: "2014",
     title: "Líderes del ranking latinoamericano",
     body: "El equipo encabeza los rankings de debate universitario a nivel latinoamericano, consolidando la posición del Perú en la escena global.",
+    img: "/assets/images/about/img-year.JPG",
   },
   {
     year: "2016",
     displayYear: "2016",
     title: "Programa de alumni",
     body: "Se consolida la red de alumni de Peruvian Universities, formada por ex-delegados que lideran iniciativas en organismos internacionales y empresas.",
+    img: "/assets/images/about/img-year.JPG",
   },
   {
     year: "2018",
     displayYear: "2018",
     title: "Décima conferencia internacional",
     body: "Peruvian Universities celebra su décima participación en conferencias internacionales, acumulando cientos de premios y reconocimientos.",
+    img: "/assets/images/about/img-year.JPG",
   },
   {
     year: "2020",
     displayYear: "2020",
     title: "Formación híbrida",
     body: "Se adapta el sistema de entrenamiento a formatos híbridos, ampliando el alcance de la formación académica.",
+    img: "/assets/images/about/img-year.JPG",
   },
   {
     year: "2022",
     displayYear: "2022",
     title: "Subcampeones del mundo",
     body: "El equipo alcanza el podio mundial, posicionándose como subcampeones de debate universitario.",
+    img: "/assets/images/about/img-year.JPG",
   },
   {
     year: "2025",
     displayYear: "2025",
     title: "Nueva generación",
     body: "Una nueva generación de líderes asume la representación internacional con una visión renovada.",
+    img: "/assets/images/about/img-year.JPG",
   },
   {
     year: "2026",
     displayYear: "2026",
     title: "Hacia el futuro",
     body: "Peruvian Universities continúa su misión de formar profesionales comprometidos con el progreso colectivo del Perú y el mundo.",
+    img: "/assets/images/about/img-year.JPG",
   },
 ];
 
@@ -121,13 +132,14 @@ export default function HistoryTimeline() {
         </div>
 
         {/* Image */}
-        <div className="md:col-span-4 md:py-14 md:pl-10 md:border-l md:border-neutral-200">
-          <ImagePlaceholder
-            src={`/assets/images/history/${active.year}.jpg`}
-            alt={`Peruvian Universities ${active.year}`}
-            aspectRatio="aspect-[4/3]"
-            className="rounded-none bg-neutral-200"
-          />
+        <div className="md:col-span-4 md:py-14 md:pl-10 md:border-l md:border-neutral-200 flex items-start">
+          <div className="w-full md:w-80 md:h-60 lg:w-96 lg:h-72 overflow-hidden rounded-xl shadow-sm bg-neutral-100">
+            <ImagePlaceholder
+              src={active.img ?? `/assets/images/history/${active.year}.jpg`}
+              alt={`Peruvian Universities ${active.year}`}
+              className="w-full h-full object-cover rounded-xl"
+            />
+          </div>
         </div>
       </div>
     </div>
