@@ -12,7 +12,7 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="relative text-white">
           <ImagePlaceholder
-            src="/assets/images/about/hero.jpg"
+            src="/assets/images/home/img-home.png"
             alt="Equipo Peruvian Universities en conferencia internacional"
             className="absolute inset-0 h-full w-full"
           />

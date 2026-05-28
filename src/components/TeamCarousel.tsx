@@ -2,34 +2,34 @@ import ImagePlaceholder from "./ImagePlaceholder";
 
 const teamMembers = [
   {
-    name: "Sandro Rodríguez",
-    role: "Verbal Commendation",
-    img: "/assets/images/team/sandro-rodriguez.jpg",
+    name: "Juani Mun",
+    role: "CEO",
+    img: "/assets/images/about/img-team-1.png",
   },
   {
     name: "Maria Gonzalez",
     role: "Employee of the Month",
-    img: "/assets/images/team/maria-gonzalez.jpg",
+    img: "/assets/images/about/img-team-1.png",
   },
   {
     name: "John Smith",
     role: "Project Completion",
-    img: "/assets/images/team/john-smith.jpg",
+    img: "/assets/images/about/img-team-1.png",
   },
   {
     name: "Emily Chen",
     role: "Outstanding Performance",
-    img: "/assets/images/team/emily-chen.jpg",
+    img: "/assets/images/about/img-team-1.png",
   },
   {
     name: "Raj Patel",
     role: "Team Leadership",
-    img: "/assets/images/team/raj-patel.jpg",
+    img: "/assets/images/about/img-team-1.png",
   },
   {
     name: "Sophia Lee",
     role: "Innovation Award",
-    img: "/assets/images/team/sophia-lee.jpg",
+    img: "/assets/images/about/img-team-1.png",
   },
 ];
 
