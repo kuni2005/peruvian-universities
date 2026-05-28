@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
 
 type Coach = {
@@ -178,109 +178,159 @@ export default function ConferenceTabs() {
   const [activeConference, setActiveConference] =
     useState<ConferenceKey>("WorldMUN");
   const [activeYearIndex, setActiveYearIndex] = useState(0);
+  const [contentVisible, setContentVisible] = useState(true);
 
-  const currentConference = conferences[activeConference];
-  const currentYear = currentConference.years[activeYearIndex];
+  const containerRef = useRef<HTMLDivElement>(null);
+  // Tracks last-applied conference so the scroll listener (mounted once) avoids stale closures
+  const trackedConferenceRef = useRef<ConferenceKey>("WorldMUN");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleConferenceChange = (key: ConferenceKey) => {
-    setActiveConference(key);
-    setActiveYearIndex(0);
-  };
+  const conference = conferences[activeConference];
+  const currentYear = conference.years[activeYearIndex];
+
+  function switchTo(key: ConferenceKey) {
+    if (key === trackedConferenceRef.current) return;
+    trackedConferenceRef.current = key;
+    if (timerRef.current) clearTimeout(timerRef.current);
+    setContentVisible(false);
+    timerRef.current = setTimeout(() => {
+      setActiveConference(key);
+      setActiveYearIndex(0);
+      setContentVisible(true);
+    }, 220);
+  }
+
+  useEffect(() => {
+    const keys = conferenceKeys;
+    const onScroll = () => {
+      const el = containerRef.current;
+      if (!el) return;
+      const { top, height } = el.getBoundingClientRect();
+      const scrollable = height - window.innerHeight;
+      if (scrollable <= 0) return;
+      const scrolled = Math.max(0, Math.min(scrollable, -top));
+      const progress = scrolled / scrollable;
+      const idx = Math.min(keys.length - 1, Math.floor(progress * keys.length));
+      switchTo(keys[idx]);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  // switchTo uses only refs + stable setState fns — safe with empty deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <div>
-      {/* Conference type tabs */}
-      <div className="overflow-x-auto">
-        <div className="flex gap-8 border-b border-neutral-200 min-w-max">
-          {conferenceKeys.map((key) => (
-            <button
-              key={key}
-              onClick={() => handleConferenceChange(key)}
-              className={`pb-3 font-condensed text-xs font-bold uppercase tracking-widest transition-colors whitespace-nowrap ${
-                activeConference === key
-                  ? "text-neutral-900 border-b-2 border-neutral-900 -mb-px"
-                  : "text-neutral-300 hover:text-neutral-600"
-              }`}
-            >
-              {key}
-            </button>
-          ))}
-        </div>
-      </div>
+    <div
+      ref={containerRef}
+      style={{ height: `calc(${conferenceKeys.length} * 100svh)` }}
+    >
+      <div
+        className="sticky top-0 overflow-hidden"
+        style={{ height: "100svh" }}
+      >
+        <div className="h-full flex flex-col py-14 md:py-20">
 
-      {/* Year selector */}
-      <div className="mt-6 overflow-x-auto">
-        <div className="flex gap-6 border-b border-neutral-200 min-w-max">
-          {currentConference.years.map((event, i) => (
-            <button
-              key={event.year}
-              onClick={() => setActiveYearIndex(i)}
-              className={`pb-3 font-condensed text-xs font-bold tracking-widest transition-colors whitespace-nowrap ${
-                i === activeYearIndex
-                  ? "text-neutral-900 border-b-2 border-neutral-900 -mb-px"
-                  : "text-neutral-300 hover:text-neutral-500"
-              }`}
-            >
-              {event.year}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Conference detail */}
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_minmax(0,1fr)] gap-8 md:gap-0 md:divide-x md:divide-neutral-200 items-start">
-        {/* Year number */}
-        <div className="md:pr-8">
-          <p className="font-bebas text-7xl sm:text-8xl md:text-[7.5rem] text-pu-dark leading-none">
-            {currentYear.year}
-          </p>
-        </div>
-
-        {/* Title + description */}
-        <div className="md:px-8">
-          <h3 className="font-bebas uppercase text-xl md:text-2xl leading-tight text-neutral-900 mb-4">
-            {currentYear.title}
-          </h3>
-          <p className="font-body text-neutral-500 text-xs sm:text-sm leading-relaxed">
-            {currentYear.description}
-          </p>
-        </div>
-
-        {/* Coaches */}
-        <div className="md:pl-8">
-          <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500 mb-4">
-            Coaches
-          </p>
-          {currentYear.coaches.map((coach) => {
-            const coachImage =
-              coach.image ??
-              `/assets/images/team/${coach.name
-                .toLowerCase()
-                .replace(/ /g, "-")}.jpg`;
-
-            return (
-            <div
-              key={coach.name}
-              className="relative rounded-2xl overflow-hidden bg-neutral-100"
-            >
-              <ImagePlaceholder
-                src={coachImage}
-                alt={coach.name}
-                aspectRatio="aspect-[3/4]"
-                className="h-full w-full"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-4 left-4">
-                <p className="font-condensed text-[10px] font-bold uppercase tracking-widest text-white/80">
-                  {coach.role}
-                </p>
-                <p className="font-bebas text-2xl text-white leading-none">
-                  {coach.name}
-                </p>
-              </div>
+          {/* Conference type tabs — driven by scroll, also clickable */}
+          <div className="overflow-x-auto shrink-0">
+            <div className="flex gap-8 border-b border-neutral-200 min-w-max">
+              {conferenceKeys.map((key) => (
+                <button
+                  key={key}
+                  onClick={() => switchTo(key)}
+                  className={`pb-3 font-condensed text-xs font-bold uppercase tracking-widest transition-colors duration-300 whitespace-nowrap ${
+                    activeConference === key
+                      ? "text-neutral-900 border-b-2 border-neutral-900 -mb-px"
+                      : "text-neutral-300 hover:text-neutral-600"
+                  }`}
+                >
+                  {key}
+                </button>
+              ))}
             </div>
-          );
-          })}
+          </div>
+
+          {/* Year selector — click only, never driven by scroll */}
+          <div className="mt-6 overflow-x-auto shrink-0">
+            <div className="flex gap-6 border-b border-neutral-200 min-w-max">
+              {conference.years.map((event, i) => (
+                <button
+                  key={event.year}
+                  onClick={() => setActiveYearIndex(i)}
+                  className={`pb-3 font-condensed text-xs font-bold tracking-widest transition-colors whitespace-nowrap ${
+                    i === activeYearIndex
+                      ? "text-neutral-900 border-b-2 border-neutral-900 -mb-px"
+                      : "text-neutral-300 hover:text-neutral-500"
+                  }`}
+                >
+                  {event.year}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Conference detail — fades out/in when conference changes */}
+          <div
+            className={`mt-10 flex-1 min-h-0 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_minmax(0,1fr)] gap-8 md:gap-0 md:divide-x md:divide-neutral-200 items-start transition-all ease-out ${
+              contentVisible
+                ? "opacity-100 translate-y-0 duration-[220ms]"
+                : "opacity-0 translate-y-3 duration-[120ms]"
+            }`}
+          >
+            {/* Year number */}
+            <div className="md:pr-8">
+              <p className="font-bebas text-7xl sm:text-8xl md:text-[7.5rem] text-pu-dark leading-none">
+                {currentYear.year}
+              </p>
+            </div>
+
+            {/* Title + description */}
+            <div className="md:px-8">
+              <h3 className="font-bebas uppercase text-xl md:text-2xl leading-tight text-neutral-900 mb-4">
+                {currentYear.title}
+              </h3>
+              <p className="font-body text-neutral-500 text-xs sm:text-sm leading-relaxed">
+                {currentYear.description}
+              </p>
+            </div>
+
+            {/* Coaches */}
+            <div className="md:pl-8">
+              <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500 mb-4">
+                Coaches
+              </p>
+              {currentYear.coaches.map((coach) => {
+                const coachImage =
+                  coach.image ??
+                  `/assets/images/team/${coach.name
+                    .toLowerCase()
+                    .replace(/ /g, "-")}.jpg`;
+
+                return (
+                  <div
+                    key={coach.name}
+                    className="relative rounded-2xl overflow-hidden bg-neutral-100"
+                  >
+                    <ImagePlaceholder
+                      src={coachImage}
+                      alt={coach.name}
+                      aspectRatio="aspect-[3/4]"
+                      className="h-full w-full"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute bottom-4 left-4">
+                      <p className="font-condensed text-[10px] font-bold uppercase tracking-widest text-white/80">
+                        {coach.role}
+                      </p>
+                      <p className="font-bebas text-2xl text-white leading-none">
+                        {coach.name}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
