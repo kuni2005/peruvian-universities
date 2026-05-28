@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ColorStripe from "@/components/ColorStripe";
+import ConferencesCarousel from "@/components/ConferencesCarousel";
 
 export default function AccionPeruPage() {
   return (
@@ -57,76 +58,9 @@ export default function AccionPeruPage() {
           <div className="mt-10 border-t border-neutral-200" />
         </section>
 
-        {/* Project cards — Conferences */}
+        {/* Project cards — Conferences carousel */}
         <section className="mx-auto max-w-7xl px-6 pb-16 md:pb-24">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-            {/* Main large card */}
-            <div className="md:col-span-8 relative rounded-3xl overflow-hidden group">
-              <div className="aspect-[4/3]">
-                <ImagePlaceholder
-                  src="/assets/images/accion-peru/worldmun.jpg"
-                  alt="Harvard WorldMUN 2026"
-                  aspectRatio=""
-                  className="w-full h-full group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-neutral-900/80 via-neutral-900/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <div className="flex items-end justify-between gap-6">
-                  <div>
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-3 inline-block mb-4">
-                      <p className="font-condensed text-[10px] font-bold uppercase tracking-wider text-white/80">
-                        Harvard World Model United Nations
-                      </p>
-                      <p className="font-bebas text-2xl text-white">
-                        Lima 2026
-                      </p>
-                    </div>
-                    <p className="font-body text-neutral-200 text-sm leading-relaxed max-w-md">
-                      Participamos en World Model United Nations, una de las
-                      conferencias más prestigiosas del mundo. En 2026, nuestro
-                      equipo continúa llevando el nombre del Perú a escenarios
-                      internacionales, destacándose por su preparación y
-                      excelencia.
-                    </p>
-                  </div>
-                  <span className="h-10 w-10 rounded-full border border-white/50 flex items-center justify-center text-white text-lg">
-                    ↗
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Two smaller cards */}
-            <div className="md:col-span-4 flex flex-col gap-4">
-              {[
-                {
-                  title: "PeruMUN",
-                  img: "/assets/images/accion-peru/perumun-logo.svg",
-                },
-                {
-                  title: "MOCAN",
-                  img: "/assets/images/accion-peru/mocan-logo.svg",
-                },
-              ].map((project) => (
-                <div
-                  key={project.title}
-                  className="relative rounded-3xl overflow-hidden group flex-1 bg-pu-dark"
-                >
-                  <div className="h-full min-h-40 flex items-center justify-center">
-                    <ImagePlaceholder
-                      src={project.img}
-                      alt={project.title}
-                      aspectRatio=""
-                      className="w-full h-full object-contain p-10"
-                    />
-                  </div>
-                  <div className="absolute inset-0 border border-white/10 rounded-3xl" />
-                </div>
-              ))}
-            </div>
-          </div>
+          <ConferencesCarousel />
         </section>
 
         {/* Ollas Comunes */}
