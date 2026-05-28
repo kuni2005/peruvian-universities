@@ -228,7 +228,7 @@ export default function ConferenceTabs() {
         className="sticky top-0 overflow-hidden"
         style={{ height: "100svh" }}
       >
-        <div className="h-full flex flex-col py-14 md:py-20">
+        <div className="h-full flex flex-col pt-12 pb-8 md:pt-16 md:pb-12">
 
           {/* Conference type tabs — driven by scroll, also clickable */}
           <div className="overflow-x-auto shrink-0">
@@ -237,7 +237,7 @@ export default function ConferenceTabs() {
                 <button
                   key={key}
                   onClick={() => switchTo(key)}
-                  className={`pb-3 font-condensed text-xs font-bold uppercase tracking-widest transition-colors duration-300 whitespace-nowrap ${
+                  className={`pb-3 font-condensed text-sm font-bold uppercase tracking-widest transition-colors duration-300 whitespace-nowrap ${
                     activeConference === key
                       ? "text-neutral-900 border-b-2 border-neutral-900 -mb-px"
                       : "text-neutral-300 hover:text-neutral-600"
@@ -250,7 +250,7 @@ export default function ConferenceTabs() {
           </div>
 
           {/* Year selector — click only, never driven by scroll */}
-          <div className="mt-6 overflow-x-auto shrink-0">
+          <div className="mt-5 overflow-x-auto shrink-0">
             <div className="flex gap-6 border-b border-neutral-200 min-w-max">
               {conference.years.map((event, i) => (
                 <button
@@ -268,34 +268,71 @@ export default function ConferenceTabs() {
             </div>
           </div>
 
-          {/* Conference detail — fades out/in when conference changes */}
+          {/* Conference detail — 2-column editorial layout, fades when conference changes */}
           <div
-            className={`mt-10 flex-1 min-h-0 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_minmax(0,1fr)] gap-8 md:gap-0 md:divide-x md:divide-neutral-200 items-start transition-all ease-out ${
+            className={`mt-8 flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[3fr_2fr] overflow-hidden transition-all ease-out ${
               contentVisible
                 ? "opacity-100 translate-y-0 duration-[220ms]"
-                : "opacity-0 translate-y-3 duration-[120ms]"
+                : "opacity-0 translate-y-4 duration-[120ms]"
             }`}
           >
-            {/* Year number */}
-            <div className="md:pr-8">
-              <p className="font-bebas text-7xl sm:text-8xl md:text-[7.5rem] text-pu-dark leading-none">
+            {/* Left: giant year at top, title + description pinned to bottom */}
+            <div className="lg:pr-14 lg:border-r lg:border-neutral-200 flex flex-col gap-6 lg:gap-0 lg:justify-between overflow-hidden">
+              <p className="font-bebas text-[9rem] sm:text-[11rem] md:text-[13rem] lg:text-[15rem] text-pu-dark leading-[0.88] -ml-1">
                 {currentYear.year}
               </p>
+              <div className="flex flex-col gap-4 pb-2">
+                <h3 className="font-bebas uppercase text-3xl md:text-4xl lg:text-5xl leading-tight text-neutral-900">
+                  {currentYear.title}
+                </h3>
+                <p className="font-body text-neutral-500 text-sm md:text-base leading-relaxed max-w-xl">
+                  {currentYear.description}
+                </p>
+              </div>
             </div>
 
-            {/* Title + description */}
-            <div className="md:px-8">
-              <h3 className="font-bebas uppercase text-xl md:text-2xl leading-tight text-neutral-900 mb-4">
-                {currentYear.title}
-              </h3>
-              <p className="font-body text-neutral-500 text-xs sm:text-sm leading-relaxed">
-                {currentYear.description}
+            {/* Right: coach card fills the full column height (desktop only) */}
+            <div className="hidden lg:flex flex-col pl-14 gap-4 min-h-0">
+              <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500 shrink-0">
+                Coaches
               </p>
+              <div className="flex-1 min-h-0 flex flex-col gap-4">
+                {currentYear.coaches.map((coach) => {
+                  const coachImage =
+                    coach.image ??
+                    `/assets/images/team/${coach.name
+                      .toLowerCase()
+                      .replace(/ /g, "-")}.jpg`;
+
+                  return (
+                    <div
+                      key={coach.name}
+                      className="flex-1 relative rounded-2xl overflow-hidden bg-neutral-100 min-h-0"
+                    >
+                      <ImagePlaceholder
+                        src={coachImage}
+                        alt={coach.name}
+                        aspectRatio=""
+                        className="absolute inset-0 w-full h-full"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className="absolute bottom-5 left-5">
+                        <p className="font-condensed text-[10px] font-bold uppercase tracking-widest text-white/80">
+                          {coach.role}
+                        </p>
+                        <p className="font-bebas text-3xl text-white leading-none">
+                          {coach.name}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Coaches */}
-            <div className="md:pl-8">
-              <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500 mb-4">
+            {/* Mobile-only coaches (aspect-ratio based, below info) */}
+            <div className="flex lg:hidden flex-col gap-3 mt-6">
+              <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500">
                 Coaches
               </p>
               {currentYear.coaches.map((coach) => {
@@ -307,14 +344,14 @@ export default function ConferenceTabs() {
 
                 return (
                   <div
-                    key={coach.name}
-                    className="relative rounded-2xl overflow-hidden bg-neutral-100"
+                    key={`mob-${coach.name}`}
+                    className="relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[3/2]"
                   >
                     <ImagePlaceholder
                       src={coachImage}
                       alt={coach.name}
-                      aspectRatio="aspect-[3/4]"
-                      className="h-full w-full"
+                      aspectRatio=""
+                      className="absolute inset-0 w-full h-full"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                     <div className="absolute bottom-4 left-4">
@@ -329,6 +366,7 @@ export default function ConferenceTabs() {
                 );
               })}
             </div>
+
           </div>
 
         </div>
