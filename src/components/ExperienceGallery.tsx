@@ -83,49 +83,74 @@ export default function ExperienceGallery() {
           No hay elementos en esta categoría.
         </p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Large item */}
-          {first && (
-            <div className="relative rounded-3xl overflow-hidden group row-span-2">
-              <div className="aspect-[3/4] md:h-full min-h-80">
+        <div className="flex flex-col gap-4">
+          {/* Featured row — fixed height */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:h-[400px]">
+            {/* Large item */}
+            {first && (
+              <div className="relative rounded-3xl overflow-hidden group h-56 md:h-full">
                 <ImagePlaceholder
                   src={first.img}
                   alt={first.title}
                   aspectRatio=""
                   className="w-full h-full group-hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-linear-to-t from-neutral-900/70 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="font-body text-white/70 text-xs mb-1">{first.event}</p>
+                  <p className="font-bebas text-white text-2xl leading-tight">{first.title}</p>
+                </div>
               </div>
-              <div className="absolute inset-0 bg-linear-to-t from-neutral-900/70 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="font-body text-white/70 text-xs mb-1">{first.event}</p>
-                <p className="font-bebas text-white text-2xl leading-tight">{first.title}</p>
-              </div>
-            </div>
-          )}
+            )}
 
-          {/* Remaining items */}
-          <div className="flex flex-col gap-4">
-            {rest.map((item) => (
-              <div
-                key={item.id}
-                className="relative rounded-3xl overflow-hidden group"
-              >
-                <div className="aspect-[16/9]">
+            {/* Right column — first 2 items */}
+            <div className="flex flex-col gap-4 md:h-full">
+              {rest.slice(0, 2).map((item) => (
+                <div
+                  key={item.id}
+                  className="relative rounded-3xl overflow-hidden group flex-1 min-h-36"
+                >
                   <ImagePlaceholder
                     src={item.img}
                     alt={item.title}
                     aspectRatio=""
-                    className="w-full h-full group-hover:scale-105 transition-transform duration-500"
+                    className="absolute inset-0 w-full h-full group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-linear-to-t from-neutral-900/70 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <p className="font-body text-white/70 text-xs mb-0.5">{item.event}</p>
+                    <p className="font-bebas text-white text-xl leading-tight">{item.title}</p>
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-linear-to-t from-neutral-900/70 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <p className="font-body text-white/70 text-xs mb-0.5">{item.event}</p>
-                  <p className="font-bebas text-white text-xl leading-tight">{item.title}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          {/* Extra items row */}
+          {rest.length > 2 && (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {rest.slice(2).map((item) => (
+                <div
+                  key={item.id}
+                  className="relative rounded-3xl overflow-hidden group"
+                >
+                  <div className="aspect-[4/3]">
+                    <ImagePlaceholder
+                      src={item.img}
+                      alt={item.title}
+                      aspectRatio=""
+                      className="w-full h-full group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-linear-to-t from-neutral-900/70 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <p className="font-body text-white/70 text-xs mb-0.5">{item.event}</p>
+                    <p className="font-bebas text-white text-xl leading-tight">{item.title}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
