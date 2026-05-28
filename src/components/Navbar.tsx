@@ -38,6 +38,7 @@ export default function Navbar({
       ? "text-neutral-900 hover:text-neutral-700"
       : "text-white/80 hover:text-white"
     : "text-neutral-500 hover:text-neutral-900";
+  const clickAnim = "active:scale-95 active:translate-y-0.5 transition-transform duration-150 ease-out";
   const linkActiveClasses = isTransparent
     ? darkOnTransparent
       ? "text-neutral-900 border-b-2 border-neutral-900 pb-0.5"
@@ -51,7 +52,7 @@ export default function Navbar({
       ? "md:hidden mt-2 mx-auto max-w-7xl bg-white/95 rounded-2xl shadow-lg px-6 py-5"
       : "md:hidden mt-2 mx-auto max-w-7xl bg-pu-dark/95 backdrop-blur rounded-2xl shadow-lg px-6 py-5"
     : "md:hidden mt-2 mx-auto max-w-7xl bg-white rounded-2xl shadow-sm px-6 py-5";
-  const mobileBaseClasses = "font-condensed text-sm font-semibold transition-colors";
+  const mobileBaseClasses = "font-condensed text-sm font-semibold transition duration-150 ease-out";
   const mobileLinkClasses = isTransparent
     ? darkOnTransparent
       ? "text-neutral-900 hover:text-neutral-700"
@@ -74,7 +75,7 @@ export default function Navbar({
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`font-condensed text-sm font-semibold transition-colors ${
+                className={`font-condensed text-sm font-semibold ${clickAnim} ${
                   pathname === link.href
                     ? linkActiveClasses
                     : linkBaseClasses
@@ -86,7 +87,7 @@ export default function Navbar({
           ))}
         </ul>
 
-        <Link href="/about" className={buttonClasses}>
+        <Link href="/about" className={`${buttonClasses} ${clickAnim}`}>
           Conócenos
         </Link>
 
@@ -123,7 +124,7 @@ export default function Navbar({
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`${mobileBaseClasses} ${
+                  className={`${mobileBaseClasses} ${clickAnim} ${
                     pathname === link.href
                       ? mobileLinkActiveClasses
                       : mobileLinkClasses
@@ -137,7 +138,7 @@ export default function Navbar({
             <li>
               <Link
                 href="/about"
-                className={`block text-center ${
+                className={`block text-center ${clickAnim} ${
                   isTransparent ? "bg-pu-cyan" : "bg-neutral-900"
                 } text-white font-condensed text-sm font-bold px-5 py-2 rounded-full`}
                 onClick={() => setMobileOpen(false)}

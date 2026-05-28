@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ConferenceTabs from "@/components/ConferenceTabs";
 import ColorStripe from "@/components/ColorStripe";
@@ -46,7 +45,7 @@ export default function ConferencesPage() {
           <ConferenceTabs />
         </section>
       </main>
-      <Footer />
+     
     </>
   );
 }

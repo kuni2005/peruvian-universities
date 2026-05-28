@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ColorStripe from "@/components/ColorStripe";
 import Link from "next/link";
@@ -328,7 +327,7 @@ export default function HomePage() {
         <ColorStripe />
       </main>
 
-      <Footer />
+     
     </>
   );
 }

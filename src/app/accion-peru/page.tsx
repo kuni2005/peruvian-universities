@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ColorStripe from "@/components/ColorStripe";
 
@@ -243,7 +242,7 @@ export default function AccionPeruPage() {
         </section>
         <ColorStripe />
       </main>
-      <Footer />
+     
     </>
   );
 }

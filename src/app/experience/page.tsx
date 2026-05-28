@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ExperienceGallery from "@/components/ExperienceGallery";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
@@ -76,7 +75,6 @@ export default function ExperiencePage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

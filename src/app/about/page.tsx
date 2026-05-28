@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import HistoryTimeline from "@/components/HistoryTimeline";
 import TeamCarousel from "@/components/TeamCarousel";
@@ -156,7 +155,7 @@ export default function AboutPage() {
         </section>
         <ColorStripe />
       </main>
-      <Footer />
+      
     </>
   );
 }
