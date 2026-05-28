@@ -133,7 +133,7 @@ export default function HistoryTimeline() {
 
         {/* Image */}
         <div className="md:col-span-4 md:py-14 md:pl-10 md:border-l md:border-neutral-200 flex items-start">
-          <div className="w-full md:w-80 md:h-60 lg:w-96 lg:h-72 overflow-hidden rounded-xl shadow-sm bg-neutral-100">
+          <div className="w-full w-96 h-72 overflow-hidden rounded-xl shadow-sm bg-neutral-100">
             <ImagePlaceholder
               src={active.img ?? `/assets/images/history/${active.year}.jpg`}
               alt={`Peruvian Universities ${active.year}`}
