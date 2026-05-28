@@ -41,7 +41,7 @@ export default function ConferencesPage() {
         <ColorStripe />
 
         {/* Interactive conference tabs */}
-        <section className="mx-auto max-w-7xl px-6 py-14 md:py-20 pb-24">
+        <section className="mx-auto max-w-7xl px-6">
           <ConferenceTabs />
         </section>
       </main>

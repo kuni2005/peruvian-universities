@@ -1,46 +1,43 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ColorStripe from "@/components/ColorStripe";
+import ConferencesCarousel from "@/components/ConferencesCarousel";
 
 export default function AccionPeruPage() {
-  const projects = [
-    {
-      title: "PeruMUN",
-      subtitle: "Logo",
-      img: "/assets/images/accion-peru/perumun-logo.svg",
-    },
-    {
-      title: "MOCAN",
-      subtitle: "Logo",
-      img: "/assets/images/accion-peru/mocan-logo.svg",
-    },
-  ];
-  const [activeIndex, setActiveIndex] = useState(projects.length - 1);
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setActiveIndex((s) => (s - 1 + projects.length) % projects.length);
-    }, 3200);
-    return () => clearInterval(t);
-  }, [projects.length]);
-
   return (
     <>
       <main className="flex-1 bg-white">
         {/* Hero */}
         <section className="relative text-white">
           <ImagePlaceholder
-            src="/assets/images/brand/img-logo.png"
+            src="/assets/images/accion-peru/hero.jpg"
             alt="Proyectos de impacto Acción Perú"
             className="absolute inset-0 h-full w-full"
           />
           <div className="absolute inset-0 bg-black/45" />
-          <Navbar variant="transparent" darkOnTransparent />
-
+          <Navbar variant="transparent" />
+          <div className="relative z-10">
+            <div className="mx-auto max-w-7xl px-6 pt-28 md:pt-36 pb-16 md:pb-24">
+              <div className="min-h-[60svh] md:min-h-[65svh] flex items-end">
+                <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
+                  <h1 className="md:col-span-7 font-bebas uppercase leading-[0.9] text-5xl md:text-7xl lg:text-8xl">
+                    Acción Perú: un ecosistema de proyectos que generan impacto
+                  </h1>
+                  <div className="md:col-span-5 md:justify-self-end max-w-md">
+                    <p className="font-body text-white/80 text-sm md:text-base leading-relaxed">
+                      Peruvian Universities es más allá de las competencias de
+                      debate. Somos una plataforma donde el talento se transforma
+                      en iniciativas reales: desde conferencias internacionales
+                      hasta proyectos sociales que generan impacto en el Perú.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
+        <ColorStripe />
 
         {/* Mission statement */}
         <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
@@ -61,91 +58,9 @@ export default function AccionPeruPage() {
           <div className="mt-10 border-t border-neutral-200" />
         </section>
 
-        {/* Project cards — Conferences */}
+        {/* Project cards — Conferences carousel */}
         <section className="mx-auto max-w-7xl px-6 pb-16 md:pb-24">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch overflow-visible">
-            {/* Main large card */}
-            <div className="md:col-span-8 relative rounded-3xl overflow-hidden group flex md:min-h-105 shadow-lg z-10">
-              <div className="w-full h-full">
-                <ImagePlaceholder
-                  src="/assets/images/accion-peru/worldmun.jpg"
-                  alt="Harvard WorldMUN 2026"
-                  aspectRatio=""
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-neutral-900/80 via-neutral-900/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <div className="flex items-end justify-between gap-6">
-                  <div>
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-3 inline-block mb-4">
-                      <p className="font-condensed text-[10px] font-bold uppercase tracking-wider text-white/80">
-                        Harvard World Model United Nations
-                      </p>
-                      <p className="font-bebas text-2xl text-white">
-                        Lima 2026
-                      </p>
-                    </div>
-                    <p className="font-body text-neutral-200 text-sm leading-relaxed max-w-md">
-                      Participamos en World Model United Nations, una de las
-                      conferencias más prestigiosas del mundo. En 2026, nuestro
-                      equipo continúa llevando el nombre del Perú a escenarios
-                      internacionales, destacándose por su preparación y
-                      excelencia.
-                    </p>
-                  </div>
-                  <span className="h-10 w-10 rounded-full border border-white/50 flex items-center justify-center text-white text-lg">
-                    ↗
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Two smaller cards */}
-            <div className="md:col-span-4 relative md:pl-6 md:flex md:items-center">
-              <div className="relative w-full h-full md:h-105">
-                {projects.map((project, i) => {
-                  const isFront = i === activeIndex;
-                  const stackOffset = (projects.length - 1 - i) * 20;
-                  const transform = `translateY(calc(-50% + ${stackOffset}px)) scale(${isFront ? 1 : 0.96})`;
-                  const style: React.CSSProperties = {
-                    right: `${stackOffset * 1.25}px`,
-                    top: "50%",
-                    transform,
-                    zIndex: isFront ? 50 : 20 + i,
-                    transition: "transform 550ms cubic-bezier(.2,.9,.2,1), box-shadow 350ms",
-                  };
-
-                  return (
-                    <div
-                      key={project.title}
-                      style={style}
-                      className={`absolute md:w-2/3 w-full md:h-105 h-60 rounded-3xl overflow-hidden group bg-pu-dark shadow-lg flex items-center p-6 ${
-                        isFront ? "ring-4 ring-pu-cyan/90 shadow-2xl" : "ring-0"
-                      }`}
-                    >
-                      <div className="w-full h-full flex items-center">
-                        <div className="shrink-0">
-                          <ImagePlaceholder
-                            src={project.img}
-                            alt={project.title}
-                            aspectRatio=""
-                            className="w-24 h-auto object-contain"
-                          />
-                        </div>
-                        <div className="ml-6 text-white">
-                          <p className="font-bebas text-lg">LOGO</p>
-                          <p className="font-body text-sm text-white/70">{project.title}</p>
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 border border-white/10 rounded-3xl" />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+          <ConferencesCarousel />
         </section>
 
         {/* Ollas Comunes */}
@@ -242,7 +157,7 @@ export default function AccionPeruPage() {
         </section>
         <ColorStripe />
       </main>
-     
+      <Footer />
     </>
   );
 }
