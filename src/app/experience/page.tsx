@@ -9,36 +9,9 @@ export default function ExperiencePage() {
     <>
       <main className="flex-1 bg-white">
         {/* Hero */}
-        <section className="relative text-white">
-          <ImagePlaceholder
-            src="/assets/images/experience/hero.jpg"
-            alt="Delegados Peruvian Universities en conferencia"
-            className="absolute inset-0 h-full w-full"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-          <Navbar variant="transparent" />
-          <div className="relative z-10">
-            <div className="mx-auto max-w-7xl px-6 pt-28 md:pt-36 pb-14 md:pb-20">
-              <div className="min-h-[52svh] md:min-h-[60svh] flex items-end">
-                <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
-                  <h1 className="md:col-span-7 font-bebas uppercase leading-[0.9] text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-                    Collections
-                  </h1>
-                  <div className="md:col-span-5 md:justify-self-end max-w-md">
-                    <p className="font-body text-white/80 text-xs sm:text-sm md:text-base leading-relaxed">
-                      Cada conferencia es una oportunidad para representar al
-                      Perú, desafiar ideas y construir conexiones con líderes de
-                      todo el mundo. Estos momentos reflejan el compromiso, la
-                      preparación y la pasión que definen a nuestra comunidad
-                      dentro y fuera del debate.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <section className="relative">
+          <Navbar variant="solid" />
         </section>
-        <ColorStripe />
 
         {/* Gallery */}
         <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">

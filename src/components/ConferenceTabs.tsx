@@ -251,12 +251,12 @@ export default function ConferenceTabs() {
 
           {/* Year selector — click only, never driven by scroll */}
           <div className="mt-5 overflow-x-auto shrink-0">
-            <div className="flex gap-6 border-b border-neutral-200 min-w-max">
+            <div className="flex gap-10 border-b border-neutral-200 min-w-max">
               {conference.years.map((event, i) => (
                 <button
                   key={event.year}
                   onClick={() => setActiveYearIndex(i)}
-                  className={`pb-3 font-condensed text-xs font-bold tracking-widest transition-colors whitespace-nowrap ${
+                  className={`pb-3 font-condensed text-sm font-bold tracking-widest transition-colors whitespace-nowrap ${
                     i === activeYearIndex
                       ? "text-neutral-900 border-b-2 border-neutral-900 -mb-px"
                       : "text-neutral-300 hover:text-neutral-500"
@@ -278,7 +278,7 @@ export default function ConferenceTabs() {
           >
             {/* Left: giant year at top, title + description pinned to bottom */}
             <div className="lg:pr-14 lg:border-r lg:border-neutral-200 flex flex-col gap-6 lg:gap-0 lg:justify-between overflow-hidden">
-              <p className="font-bebas text-[9rem] sm:text-[11rem] md:text-[13rem] lg:text-[15rem] text-pu-dark leading-[0.88] -ml-1">
+              <p className="font-bebas mt-10 text-[9rem] sm:text-[11rem] md:text-[13rem] lg:text-[15rem] text-pu-dark leading-[0.88] -ml-1">
                 {currentYear.year}
               </p>
               <div className="flex flex-col gap-4 pb-2">
