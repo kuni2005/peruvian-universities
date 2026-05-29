@@ -15,46 +15,12 @@ type GalleryItem = {
 };
 
 const items: GalleryItem[] = [
-  {
-    id: 1,
-    category: "MUN",
-    event: "Harvard WorldMUN 2024",
-    title: "Lima, Perú",
-    img: "/assets/images/experience/worldmun-2024.jpg",
-    large: true,
-  },
-  {
-    id: 2,
-    category: "Conferencias",
-    event: "ONU Lima 2023",
-    title: "Conferencia anual",
-    img: "/assets/images/experience/onu-lima-2023.jpg",
-    large: false,
-  },
-  {
-    id: 3,
-    category: "Competencias",
-    event: "Workshop 2024",
-    title: "Debate intensivo",
-    img: "/assets/images/experience/workshop-2024.jpg",
-    large: false,
-  },
-  {
-    id: 4,
-    category: "MUN",
-    event: "HNMUN 2023",
-    title: "Boston, USA",
-    img: "/assets/images/experience/hnmun-2023.jpg",
-    large: false,
-  },
-  {
-    id: 5,
-    category: "Conferencias",
-    event: "PeruMUN 2024",
-    title: "Lima, Perú",
-    img: "/assets/images/experience/perumun-2024.jpg",
-    large: false,
-  },
+  { id: 1, category: "MUN", event: "Harvard WorldMUN 2024", title: "Lima, Perú", img: "/assets/images/experience/img-experience-1.JPG", large: true },
+  { id: 2, category: "Conferencias", event: "ONU Lima 2023", title: "Conferencia anual", img: "/assets/images/experience/img-experience-2.JPG", large: false },
+  { id: 3, category: "Competencias", event: "Workshop 2024", title: "Debate intensivo", img: "/assets/images/experience/img-experience-3.JPG", large: false },
+  { id: 4, category: "MUN", event: "HNMUN 2023", title: "Boston, USA", img: "/assets/images/experience/img-experience-4.JPG", large: false },
+  { id: 5, category: "Conferencias", event: "PeruMUN 2024", title: "Lima, Perú", img: "/assets/images/experience/img-experience-5.CR2", large: false },
+  { id: 6, category: "Competencias", event: "Simulación 2022", title: "Competencia interna", img: "/assets/images/experience/img-experience-6.HEIC", large: false },
 ];
 
 const filters: FilterKey[] = ["Todos", "MUN", "Conferencias", "Competencias"];
@@ -295,7 +261,7 @@ function ExtraItems({
   if (extras.length === 2) {
     return (
       <div className="grid grid-cols-2 gap-4">
-        {extras.map((item) => overlayCard(item, "aspect-[4/3]"))}
+        {extras.map((item) => overlayCard(item, "aspect-4/3"))}
       </div>
     );
   }
@@ -304,20 +270,16 @@ function ExtraItems({
   if (extras.length === 3) {
     return (
       <div className="grid grid-cols-3 gap-4">
-        {extras.map((item) => overlayCard(item, "aspect-[4/3]"))}
+        {extras.map((item) => overlayCard(item, "aspect-4/3"))}
       </div>
     );
   }
 
-  // 4+ extras → horizontal scroll filmstrip
+  // 4+ extras → grid (no horizontal carousel)
   return (
-    <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {extras.map((item) => (
-        <div
-          key={item.id}
-          className={`${cardClass} flex-none w-64 h-52 snap-start`}
-          onClick={() => onItemClick(item)}
-        >
+        <div key={item.id} className={`${cardClass} ${"aspect-4/3"}`} onClick={() => onItemClick(item)}>
           <ImagePlaceholder
             src={item.img}
             alt={item.title}
@@ -376,7 +338,7 @@ export default function ExperienceGallery() {
         ) : (
           <div className="flex flex-col gap-4">
             {/* Featured row — fixed height */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:h-[400px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:h-100">
               {/* Large item */}
               {first && (
                 <div

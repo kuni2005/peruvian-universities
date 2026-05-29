@@ -19,7 +19,7 @@ export default function ExperiencePage() {
         </section>
 
         {/* Testimonials */}
-        <section className="mx-auto max-w-7xl px-6 pb-20 md:pb-28">
+        <section className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             {/* Left: heading + portrait */}
             <div className="flex flex-col gap-8">
