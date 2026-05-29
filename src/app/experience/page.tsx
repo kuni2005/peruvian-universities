@@ -19,7 +19,7 @@ export default function ExperiencePage() {
         </section>
 
         {/* Testimonials */}
-        <section className="mx-auto max-w-7xl px-6">
+        <section className="mx-auto max-w-7xl px-6 pb-24 md:pb-32">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             {/* Left: heading + portrait */}
             <div className="flex flex-col gap-8">
@@ -33,7 +33,7 @@ export default function ExperiencePage() {
               </div>
               <div className="rounded-3xl overflow-hidden aspect-4/5 max-w-sm">
                 <ImagePlaceholder
-                  src="/assets/images/testimonials/delegate-portrait.jpg"
+                  src="/assets/images/about/img-team-1.png"
                   alt="Delegate portrait"
                   aspectRatio=""
                   className="w-full h-full"

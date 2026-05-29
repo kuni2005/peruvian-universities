@@ -19,8 +19,8 @@ const items: GalleryItem[] = [
   { id: 2, category: "Conferencias", event: "ONU Lima 2023", title: "Conferencia anual", img: "/assets/images/experience/img-experience-2.JPG", large: false },
   { id: 3, category: "Competencias", event: "Workshop 2024", title: "Debate intensivo", img: "/assets/images/experience/img-experience-3.JPG", large: false },
   { id: 4, category: "MUN", event: "HNMUN 2023", title: "Boston, USA", img: "/assets/images/experience/img-experience-4.JPG", large: false },
-  { id: 5, category: "Conferencias", event: "PeruMUN 2024", title: "Lima, Perú", img: "/assets/images/experience/img-experience-5.CR2", large: false },
-  { id: 6, category: "Competencias", event: "Simulación 2022", title: "Competencia interna", img: "/assets/images/experience/img-experience-6.HEIC", large: false },
+  { id: 5, category: "Conferencias", event: "PeruMUN 2024", title: "Lima, Perú", img: "/assets/images/about/img-team-1.png", large: false },
+  { id: 6, category: "Competencias", event: "Simulación 2022", title: "Competencia interna", img: "/assets/images/about/img-year.JPG", large: false },
 ];
 
 const filters: FilterKey[] = ["Todos", "MUN", "Conferencias", "Competencias"];
