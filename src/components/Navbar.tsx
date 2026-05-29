@@ -32,7 +32,7 @@ export default function Navbar({
   } ${className}`;
   const navClasses = isTransparent
     ? "mx-auto max-w-7xl px-4 md:px-6 py-3 flex items-center justify-between"
-    : "mx-auto max-w-7xl bg-white rounded-2xl shadow-sm px-6 py-3 flex items-center justify-between";
+    : "mx-auto max-w-7xl bg-white rounded-2xl shadow-none ring-0 px-6 py-3 flex items-center justify-between";
   const linkBaseClasses = isTransparent
     ? darkOnTransparent
       ? "text-neutral-900 hover:text-neutral-700"
@@ -46,7 +46,7 @@ export default function Navbar({
     : "text-neutral-900 border-b-2 border-neutral-900 pb-0.5";
   const buttonClasses = isTransparent
     ? "hidden md:inline-flex items-center bg-pu-cyan text-white font-condensed text-sm font-bold px-5 py-2 rounded-full hover:brightness-110 transition"
-    : "hidden md:inline-flex items-center bg-neutral-900 text-white font-condensed text-sm font-bold px-5 py-2 rounded-full hover:bg-pu-dark transition-colors";
+    : "hidden md:inline-flex items-center bg-pu-cyan text-white font-condensed text-sm font-bold px-5 py-2 rounded-full hover:brightness-110 transition";
   const mobileMenuClasses = isTransparent
     ? darkOnTransparent
       ? "md:hidden mt-2 mx-auto max-w-7xl bg-white/95 rounded-2xl shadow-lg px-6 py-5"

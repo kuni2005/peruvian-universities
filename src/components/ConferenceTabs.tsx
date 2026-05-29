@@ -272,8 +272,8 @@ export default function ConferenceTabs() {
           <div
             className={`mt-8 flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[3fr_2fr] overflow-hidden transition-all ease-out ${
               contentVisible
-                ? "opacity-100 translate-y-0 duration-[220ms]"
-                : "opacity-0 translate-y-4 duration-[120ms]"
+                ? "opacity-100 translate-y-0 duration-220"
+                : "opacity-0 translate-y-4 duration-120"
             }`}
           >
             {/* Left: giant year at top, title + description pinned to bottom */}
@@ -298,11 +298,7 @@ export default function ConferenceTabs() {
               </p>
               <div className="flex-1 min-h-0 flex flex-col gap-4">
                 {currentYear.coaches.map((coach) => {
-                  const coachImage =
-                    coach.image ??
-                    `/assets/images/team/${coach.name
-                      .toLowerCase()
-                      .replace(/ /g, "-")}.jpg`;
+                  const coachImage = "/assets/images/about/img-team-1.png";
 
                   return (
                     <div
@@ -315,7 +311,7 @@ export default function ConferenceTabs() {
                         aspectRatio=""
                         className="absolute inset-0 w-full h-full"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
                       <div className="absolute bottom-5 left-5">
                         <p className="font-condensed text-[10px] font-bold uppercase tracking-widest text-white/80">
                           {coach.role}
@@ -336,16 +332,12 @@ export default function ConferenceTabs() {
                 Coaches
               </p>
               {currentYear.coaches.map((coach) => {
-                const coachImage =
-                  coach.image ??
-                  `/assets/images/team/${coach.name
-                    .toLowerCase()
-                    .replace(/ /g, "-")}.jpg`;
+                const coachImage = "/assets/images/about/img-team-1.png";
 
                 return (
                   <div
                     key={`mob-${coach.name}`}
-                    className="relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[3/2]"
+                    className="relative rounded-2xl overflow-hidden bg-neutral-100 aspect-3/2"
                   >
                     <ImagePlaceholder
                       src={coachImage}
@@ -353,7 +345,7 @@ export default function ConferenceTabs() {
                       aspectRatio=""
                       className="absolute inset-0 w-full h-full"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
                     <div className="absolute bottom-4 left-4">
                       <p className="font-condensed text-[10px] font-bold uppercase tracking-widest text-white/80">
                         {coach.role}
