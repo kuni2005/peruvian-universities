@@ -3,6 +3,7 @@ interface ImagePlaceholderProps {
   alt: string;
   className?: string;
   aspectRatio?: string;
+  fit?: "cover" | "contain";
 }
 
 /* Replace src prop with a real image path when assets are available.
@@ -13,11 +14,18 @@ export default function ImagePlaceholder({
   alt,
   className = "",
   aspectRatio = "aspect-video",
+  fit = "cover",
 }: ImagePlaceholderProps) {
   if (src) {
+    const fitClass = fit === "contain" ? "object-contain" : "object-cover";
+
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={src} alt={alt} className={`w-full h-full object-cover ${className}`} />
+      <img
+        src={src}
+        alt={alt}
+        className={`w-full h-full ${fitClass} ${className}`}
+      />
     );
   }
 
