@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useI18n } from "@/i18n/LanguageProvider";
 
 export default function ContactForm() {
+  const { t } = useI18n();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -19,7 +21,7 @@ export default function ContactForm() {
 
   const handleWhatsApp = () => {
     const text = encodeURIComponent(
-      `Hola, soy ${form.name} (${form.email}). ${form.message}`
+      `${t.contactForm.greeting} ${form.name} (${form.email}). ${form.message}`
     );
     window.open(`https://wa.me/?text=${text}`, "_blank");
   };
@@ -33,7 +35,7 @@ export default function ContactForm() {
         <input
           type="text"
           name="name"
-          placeholder="Your name"
+          placeholder={t.contactForm.name}
           value={form.name}
           onChange={handleChange}
           className={inputClass}
@@ -41,7 +43,7 @@ export default function ContactForm() {
         <input
           type="email"
           name="email"
-          placeholder="Email address"
+          placeholder={t.contactForm.email}
           value={form.email}
           onChange={handleChange}
           className={inputClass}
@@ -50,7 +52,7 @@ export default function ContactForm() {
       <input
         type="tel"
         name="phone"
-        placeholder="Contact number"
+        placeholder={t.contactForm.phone}
         value={form.phone}
         onChange={handleChange}
         className={inputClass}
@@ -58,14 +60,14 @@ export default function ContactForm() {
       <input
         type="text"
         name="company"
-        placeholder="Company name"
+        placeholder={t.contactForm.company}
         value={form.company}
         onChange={handleChange}
         className={inputClass}
       />
       <textarea
         name="message"
-        placeholder="Your message"
+        placeholder={t.contactForm.message}
         rows={4}
         value={form.message}
         onChange={handleChange}
@@ -76,7 +78,7 @@ export default function ContactForm() {
         onClick={handleWhatsApp}
         className="bg-neutral-900 text-white font-condensed font-bold uppercase text-sm px-8 py-3 rounded-full hover:bg-pu-dark transition-colors"
       >
-        Escríbenos por WhatsApp
+        {t.contactForm.submit}
       </button>
     </div>
   );

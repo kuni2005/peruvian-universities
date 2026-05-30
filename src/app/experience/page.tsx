@@ -1,10 +1,13 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ExperienceGallery from "@/components/ExperienceGallery";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
-import ColorStripe from "@/components/ColorStripe";
+import { useI18n } from "@/i18n/LanguageProvider";
 
 export default function ExperiencePage() {
+  const { t } = useI18n();
   return (
     <>
       <main className="flex-1 bg-white">
@@ -25,16 +28,16 @@ export default function ExperiencePage() {
             <div className="flex flex-col gap-8">
               <div>
                 <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3">
-                  Voces de nuestra comunidad
+                  {t.experience.testimonialsLabel}
                 </p>
                 <h2 className="font-bebas uppercase text-4xl md:text-5xl leading-[0.92]">
-                  Delegates Experiences
+                  {t.experience.testimonialsHeading}
                 </h2>
               </div>
               <div className="rounded-3xl overflow-hidden aspect-4/5 max-w-sm">
                 <ImagePlaceholder
                   src="/assets/images/about/img-team-1.png"
-                  alt="Delegate portrait"
+                  alt={t.experience.portraitAlt}
                   aspectRatio=""
                   className="w-full h-full"
                 />

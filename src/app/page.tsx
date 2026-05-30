@@ -1,9 +1,13 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ColorStripe from "@/components/ColorStripe";
 import Link from "next/link";
+import { useI18n } from "@/i18n/LanguageProvider";
 
 export default function HomePage() {
+  const { t } = useI18n();
   return (
     <>
       <main className="flex-1 bg-white">
@@ -21,15 +25,11 @@ export default function HomePage() {
               <div className="min-h-[60svh] md:min-h-[65svh] flex items-end">
                 <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
                   <h1 className="md:col-span-7 font-bebas uppercase leading-[0.9] text-5xl md:text-7xl lg:text-8xl">
-                    El equipo de debate más destacado del Perú
+                    {t.home.heroTitle}
                   </h1>
                   <div className="md:col-span-5 md:justify-self-end max-w-md">
                     <p className="font-body text-white/80 text-sm md:text-base leading-relaxed">
-                      Desde 2004, somos una organización liderada por estudiantes
-                      que representa al Perú en las conferencias de debate más
-                      prestigiosas del mundo. Formamos líderes capaces de generar
-                      impacto real a través del pensamiento crítico, la diplomacia
-                      y la acción.
+                      {t.home.heroText}
                     </p>
                   </div>
                 </div>
@@ -52,27 +52,23 @@ export default function HomePage() {
               {/* Col 1: label */}
               <div className="hidden md:block md:col-span-2 pr-8 pt-1">
                 <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500 underline decoration-neutral-500">
-                  Que es Peruvian Universities
+                  {t.home.aboutLabel}
                 </p>
               </div>
               {/* Col 2: contenido con borde izquierdo */}
               <div className="md:col-span-6 md:border-l md:border-neutral-300 md:pl-12 flex flex-col justify-center gap-y-6">
                 <h2 className="font-bebas uppercase text-5xl md:text-6xl lg:text-7xl leading-[0.9] text-neutral-900">
-                  Una comunidad que transforma talento en liderazgo
+                  {t.home.aboutHeading}
                 </h2>
                 <p className="font-body text-neutral-600 text-sm md:text-base leading-relaxed max-w-lg">
-                  Peruvian Universities es una organización dedicada a potenciar
-                  el desarrollo académico y personal de sus miembros mediante el
-                  debate y la participación en Model United Nations. Nuestro
-                  equipo ha destacado a nivel internacional, convirtiéndose en
-                  uno de los más premiados en conferencias como Harvard WorldMUN.
+                  {t.home.aboutBody}
                 </p>
                 <div>
                   <Link
                     href="/about"
                     className="inline-flex items-center bg-pu-cyan text-white font-condensed font-bold text-sm px-6 py-2.5 rounded-md hover:brightness-110 transition"
                   >
-                    Conoce más
+                    {t.home.aboutCta}
                   </Link>
                 </div>
               </div>
@@ -94,22 +90,16 @@ export default function HomePage() {
           <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
             <div className="flex flex-col gap-10">
               <h2 className="font-bebas uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
-                ¿Qué es Model United Nations?
+                {t.home.munHeading}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-stretch">
                 {/* Left col */}
                 <div className="flex flex-col">
                   <p className="font-body text-white/70 text-sm md:text-base leading-relaxed border-b border-white/15 pb-6">
-                    Model United Nations (MUN) es una simulación académica donde
-                    los participantes representan a países dentro de comités de
-                    las Naciones Unidas, debatiendo problemáticas globales actuales.
+                    {t.home.munIntro}
                   </p>
                   <ul className="flex flex-col">
-                    {[
-                      "Desarrolla liderazgo internacional",
-                      "Mejora tu oratoria y negociación",
-                      "Debate problemáticas globales reales",
-                    ].map((item) => (
+                    {t.home.munList.map((item) => (
                       <li
                         key={item}
                         className="flex items-center gap-4 font-body text-white/80 text-sm md:text-base border-b border-white/15 py-4"
@@ -129,11 +119,7 @@ export default function HomePage() {
                     </span>
                     <div className="border-t border-white/15 pt-4 mt-2">
                       <p className="font-body text-white/70 text-sm leading-relaxed">
-                        I have always felt that the benefit that being part of PU has
-                        given me is a debt that I will not be able to pay. By being
-                        part of the team, debating and giving your best, as well as
-                        taking on new challenges within the team, you hope to give new
-                        members the same experience you have had, or even a better one.
+                        {t.home.munQuote}
                       </p>
                     </div>
                     <div className="border-t border-white/15 mt-6 pt-4 flex items-center justify-between">
@@ -141,18 +127,18 @@ export default function HomePage() {
                         <div className="w-9 h-9 rounded-full bg-white/20 shrink-0" />
                         <div>
                           <p className="font-condensed font-bold text-white text-xs uppercase tracking-wider">
-                            Miranda Paz
+                            {t.home.munQuoteName}
                           </p>
                           <p className="font-body text-white/50 text-xs">
-                            Sophomore Delegate
+                            {t.home.munQuoteRole}
                           </p>
                         </div>
                       </div>
                       <div className="flex gap-4 text-white/50">
-                        <button aria-label="Anterior" className="hover:text-white transition text-lg">
+                        <button aria-label={t.common.previous} className="hover:text-white transition text-lg">
                           ←
                         </button>
-                        <button aria-label="Siguiente" className="hover:text-white transition text-lg">
+                        <button aria-label={t.common.next} className="hover:text-white transition text-lg">
                           →
                         </button>
                       </div>
@@ -178,10 +164,10 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row md:items-end gap-6 mb-10">
             <div>
               <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-2">
-                What do we do
+                {t.home.skillsLabel}
               </p>
               <h2 className="font-bebas uppercase text-3xl md:text-4xl lg:text-5xl leading-[0.95]">
-                Desarrollamos habilidades para impactar el mundo
+                {t.home.skillsHeading}
               </h2>
             </div>
             <div className="flex-1 border-t border-neutral-200" />
@@ -197,26 +183,16 @@ export default function HomePage() {
             </div>
             <div className="md:col-span-7">
               <p className="font-body text-neutral-600 text-md leading-relaxed mb-6">
-                Preparamos a nuestros miembros para destacar en escenarios
-                internacionales mediante entrenamientos intensivos en debate,
-                negociación y análisis político.
+                {t.home.skillsBody1}
               </p>
               <p className="font-body text-neutral-600 text-sm md:text-base leading-relaxed mb-6">
-                Nuestro enfoque está en el desarrollo de habilidades clave como
-                comunicación efectiva, pensamiento crítico, liderazgo y trabajo
-                en equipo. Participamos en conferencias de alto nivel donde
-                nuestros delegados representan al Perú con excelencia.
+                {t.home.skillsBody2}
               </p>
               <p className="font-body text-neutral-600 text-sm md:text-base leading-relaxed mb-10">
-                Más allá de la competencia, buscamos formar personas capaces de
-                liderar, influir y generar cambios significativos en la sociedad.
+                {t.home.skillsBody3}
               </p>
               <div className="grid grid-cols-3 gap-6">
-                {[
-                  { value: "+200", label: "Delegados formados" },
-                  { value: "10", label: "Años formando líderes" },
-                  { value: "+650", label: "Premios internacionales" },
-                ].map((stat) => (
+                {t.home.stats.map((stat) => (
                   <div key={stat.label}>
                     <p className="font-bebas text-4xl md:text-5xl text-pu-cyan">
                       {stat.value}
@@ -236,10 +212,10 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row md:items-end gap-6 mb-10">
             <div>
               <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-2">
-                Contact
+                {t.home.contactLabel}
               </p>
               <h2 className="font-bebas uppercase text-3xl md:text-4xl lg:text-5xl leading-[0.95]">
-                Sé parte de la próxima generación de líderes
+                {t.home.contactHeading}
               </h2>
             </div>
             <div className="flex-1 border-t border-neutral-200" />
@@ -248,13 +224,11 @@ export default function HomePage() {
             <div className="md:col-span-5 flex flex-col justify-between gap-10">
               <div className="space-y-8">
                 <p className="font-body text-neutral-500 text-base leading-relaxed">
-                  Si quieres desarrollar tu potencial, representar al Perú y formar
-                  parte de una comunidad global, estamos aquí para ayudarte a dar
-                  el siguiente paso.
+                  {t.home.contactIntro}
                 </p>
                 <div>
                   <p className="font-condensed font-bold uppercase text-xs tracking-widest text-neutral-400 mb-5">
-                    Contact details
+                    {t.home.contactDetails}
                   </p>
                   <div className="divide-y divide-neutral-100 font-body">
                     <div className="flex items-center gap-4 py-4">
@@ -265,8 +239,8 @@ export default function HomePage() {
                         </svg>
                       </div>
                       <div>
-                        <p className="font-semibold text-neutral-900 text-sm">Address</p>
-                        <p className="text-sm text-neutral-500 leading-snug">1435 Wellington Road, Windsor, Vic 3181, Australia</p>
+                        <p className="font-semibold text-neutral-900 text-sm">{t.home.addressLabel}</p>
+                        <p className="text-sm text-neutral-500 leading-snug">{t.home.addressValue}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 py-4">
@@ -276,7 +250,7 @@ export default function HomePage() {
                         </svg>
                       </div>
                       <div>
-                        <p className="font-semibold text-neutral-900 text-sm">Email</p>
+                        <p className="font-semibold text-neutral-900 text-sm">{t.home.emailLabel}</p>
                         <a href="mailto:hello@stembiotech.com" className="text-sm text-pu-cyan hover:text-pu-dark transition-colors">
                           hello@stembiotech.com
                         </a>
@@ -289,7 +263,7 @@ export default function HomePage() {
                         </svg>
                       </div>
                       <div>
-                        <p className="font-semibold text-neutral-900 text-sm">Phone</p>
+                        <p className="font-semibold text-neutral-900 text-sm">{t.home.phoneLabel}</p>
                         <a href="tel:+51928173821" className="text-sm text-pu-cyan hover:text-pu-dark transition-colors">
                           +51 928 173 821
                         </a>
@@ -311,7 +285,7 @@ export default function HomePage() {
                 >
                   <path d="M12.001 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.046 22l4.978-1.37A9.963 9.963 0 0 0 12.001 22C17.524 22 22 17.523 22 12S17.524 2 12.001 2zm4.603 13.616c-.193.541-1.13 1.032-1.556 1.073-.4.038-.776.19-2.608-.544-2.194-.877-3.599-3.106-3.708-3.25-.108-.144-.882-1.172-.882-2.236 0-1.064.557-1.587.754-1.804.197-.216.43-.27.573-.27l.412.008c.132.006.31-.05.484.37.178.429.605 1.478.659 1.585.053.107.088.231.017.37-.07.14-.105.228-.209.35-.103.122-.218.273-.311.367-.103.103-.21.215-.09.422.12.207.532.879 1.143 1.424.785.698 1.447.914 1.653 1.016.207.103.327.086.449-.052.12-.138.52-.607.66-.815.138-.207.276-.172.465-.103.19.069 1.205.569 1.412.672.207.103.345.155.396.241.051.086.051.499-.142 1.04z" />
                 </svg>
-                Escríbenos por WhatsApp
+                {t.home.whatsappCta}
               </a>
             </div>
             <div className="md:col-span-7">

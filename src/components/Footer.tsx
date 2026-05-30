@@ -1,28 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "./Logo";
-
-const footerLinks = {
-  "Peruvian Universities": [
-    { label: "Inicio", href: "/" },
-    { label: "Sobre nosotros", href: "/about" },
-    { label: "Acción Perú", href: "/accion-peru" },
-    { label: "Conferencias", href: "/conferences" },
-    { label: "Experiencia", href: "/experience" },
-  ],
-  "¿Qué es MUN?": [
-    { label: "Qué es", href: "/about" },
-    { label: "Cómo participar", href: "/about#participar" },
-    { label: "Equipo", href: "/about#team" },
-  ],
-  "Contacto": [
-    { label: "Contacto", href: "/contact" },
-    { label: "Prensa", href: "/press" },
-  ],
-};
-
-const footerDescription =
-  "Peruvian Universities es una comunidad dedicada a promover el diálogo académico y la participación estudiantil a través de conferencias, proyectos y programas formativos en Perú. Ponte en contacto para colaborar o participar.";
-const year = new Date().getFullYear();
+import { useI18n } from "@/i18n/LanguageProvider";
 
 const socialLinks = [
   {
@@ -48,6 +28,27 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const { t } = useI18n();
+
+  const footerLinks = {
+    [t.footer.columns.org]: [
+      { label: t.footer.links.home, href: "/" },
+      { label: t.footer.links.about, href: "/about" },
+      { label: t.footer.links.accionPeru, href: "/accion-peru" },
+      { label: t.footer.links.conferences, href: "/conferences" },
+      { label: t.footer.links.experience, href: "/experience" },
+    ],
+    [t.footer.columns.mun]: [
+      { label: t.footer.links.whatIs, href: "/about" },
+      { label: t.footer.links.howToJoin, href: "/about#participar" },
+      { label: t.footer.links.team, href: "/about#team" },
+    ],
+    [t.footer.columns.contact]: [
+      { label: t.footer.links.contact, href: "/contact" },
+      { label: t.footer.links.press, href: "/press" },
+    ],
+  };
+
   return (
     <footer className="bg-[#002632] text-white relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 py-16 relative">
@@ -63,7 +64,7 @@ export default function Footer() {
             <Logo variant="white" />
             <div className="mt-6 space-y-1 text-sm text-white/70">
               <p className="font-body font-semibold text-white/80 uppercase text-xs tracking-wider mb-3">
-                Address
+                {t.footer.addressLabel}
               </p>
               <p>1435 Wellington Road</p>
               <p>Windsor, Vic 3181</p>
@@ -71,7 +72,7 @@ export default function Footer() {
             </div>
             <div className="mt-4 space-y-1 text-sm text-white/70">
               <p>
-                <span className="font-semibold text-white/80">Email</span>
+                <span className="font-semibold text-white/80">{t.footer.emailLabel}</span>
               </p>
               <a
                 href="mailto:hello@stembiotech.com"
@@ -82,7 +83,7 @@ export default function Footer() {
             </div>
             <div className="mt-4 text-sm text-white/70">
               <p>
-                <span className="font-semibold text-white/80">Phone</span>
+                <span className="font-semibold text-white/80">{t.footer.phoneLabel}</span>
               </p>
               <a
                 href="tel:+61392817382"
@@ -150,12 +151,12 @@ export default function Footer() {
         </div>
 
         <p className="mt-6 text-xs text-white/40 leading-relaxed">
-          {footerDescription}
+          {t.footer.description}
         </p>
 
         <div className="mt-5 flex flex-col sm:flex-row sm:items-center gap-3 text-xs text-white/50">
           <span className="uppercase tracking-[0.25em] font-semibold text-white/60">
-            Powered by
+            {t.footer.poweredBy}
           </span>
           <a href="https://virtuolabs.dev/">
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 188 175" fill="none">

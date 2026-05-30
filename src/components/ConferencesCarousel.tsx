@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
+import { useI18n } from "@/i18n/LanguageProvider";
 
 interface Slide {
   id: string;
   img: string;
-  description: string;
   thumbnailLogo?: string;
   logo?: string;
   logoAlt?: string;
@@ -13,31 +13,28 @@ interface Slide {
   title?: string;
 }
 
+// Slide descriptions live in the i18n dictionary at
+// `conferencesCarousel.descriptions` (same order as this array).
 const slides: Slide[] = [
   {
     id: "worldmun",
     img: "/assets/images/accion/img-harvard.png",
-    description:
-      "Participamos en World Model United Nations, una de las conferencias más prestigiosas del mundo. En 2026, nuestro equipo continúa llevando el nombre del Perú a escenarios internacionales, destacando por su preparación y excelencia.",
     thumbnailLogo: "/assets/icons/icon-peru-mun.svg",
   },
   {
     id: "perumun",
     img: "/assets/images/accion/img-harvard.png",
-    description:
-      "Organizamos PeruMUN, nuestra propia conferencia nacional de Modelo de Naciones Unidas, formando a la próxima generación de líderes y diplomáticos peruanos.",
     thumbnailLogo: "/assets/icons/icon-peru-mun.svg",
   },
   {
     id: "mocan",
     img: "/assets/images/accion/img-harvard.png",
-    description:
-      "Participamos en MOCAN, reforzando nuestras habilidades de debate y liderazgo en el ámbito del Modelo de Naciones Unidas a nivel nacional.",
     thumbnailLogo: "/assets/icons/icon-peru-mun.svg",
   },
 ];
 
 export default function ConferencesCarousel() {
+  const { t } = useI18n();
   const [active, setActive] = useState(0);
   const current = slides[active];
 
@@ -60,7 +57,7 @@ export default function ConferencesCarousel() {
         {/* Bottom content */}
         <div className="absolute bottom-0 left-0 right-0 p-10 flex items-end justify-between gap-6">
           <p className="font-body text-neutral-200 text-sm leading-relaxed max-w-sm">
-            {current.description}
+            {t.conferencesCarousel.descriptions[active]}
           </p>
           <span className="h-10 w-10 shrink-0 rounded-full border border-white/50 flex items-center justify-center text-white text-xl">
             ↗

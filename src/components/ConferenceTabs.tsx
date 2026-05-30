@@ -2,179 +2,63 @@
 
 import { useState, useEffect, useRef } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
+import { useI18n } from "@/i18n/LanguageProvider";
 
-type Coach = {
-  name: string;
-  role: string;
-  image?: string;
-};
-
+// Structural data only (proper names: years, conference titles, coach names).
+// The localized `description` and coach `role` text live in the i18n
+// dictionary at `conferences.data[<key>][<index>]`, matched by order.
 type ConferenceYear = {
   year: string;
   title: string;
-  description: string;
-  coaches: Coach[];
+  coachNames: string[];
 };
 
 type ConferenceData = {
   years: ConferenceYear[];
 };
 
-const conferences: Record<string, ConferenceData> = {
+const conferenceMeta = {
   WorldMUN: {
     years: [
-      {
-        year: "2004",
-        title: "WorldMUN",
-        description:
-          "WorldMUN es una de las conferencias de Model United Nations más prestigiosas del mundo. En este espacio, nuestros delegados compiten junto a estudiantes de universidades de élite, desarrollando habilidades de negociación, liderazgo y diplomacia en un entorno multicultural de alto nivel.",
-        coaches: [
-          {
-            name: "Sandro Rodríguez",
-            role: "CEO",
-            image: "/assets/images/team/sandro-rodriguez.jpg",
-          },
-        ],
-      },
-      {
-        year: "2006",
-        title: "WorldMUN",
-        description:
-          "Primera gran victoria de Peruvian Universities en WorldMUN. El equipo demostró excelencia académica y preparación de alto nivel, ganando reconocimiento internacional.",
-        coaches: [{ name: "Name", role: "Head Coach" }],
-      },
-      {
-        year: "2008",
-        title: "WorldMUN",
-        description:
-          "Consolidamos nuestra posición como referentes del debate latinoamericano, con múltiples premios y distinciones en esta edición.",
-        coaches: [{ name: "Name", role: "Academic Director" }],
-      },
-      {
-        year: "2010",
-        title: "WorldMUN",
-        description:
-          "El equipo alcanza nuevos hitos de excelencia, siendo reconocido como delegación destacada por los organizadores de WorldMUN.",
-        coaches: [{ name: "Name", role: "Coach" }],
-      },
-      {
-        year: "2014",
-        title: "WorldMUN",
-        description:
-          "Una de las participaciones más exitosas en la historia del equipo, con delegados premiados en múltiples comités simultáneamente.",
-        coaches: [{ name: "Name", role: "Lead Coach" }],
-      },
-      {
-        year: "2016",
-        title: "WorldMUN",
-        description:
-          "Peruvian Universities continúa su racha de éxitos, llevando el nombre del Perú a los más altos estándares del debate internacional.",
-        coaches: [{ name: "Name", role: "Coach" }],
-      },
-      {
-        year: "2018",
-        title: "WorldMUN",
-        description:
-          "Décimo aniversario en WorldMUN. El equipo celebra una trayectoria de excelencia con la participación más numerosa de su historia.",
-        coaches: [{ name: "Name", role: "Director" }],
-      },
-      {
-        year: "2020",
-        title: "WorldMUN (Virtual)",
-        description:
-          "Adaptándonos a los desafíos globales, participamos en la primera edición virtual de WorldMUN, demostrando resiliencia y flexibilidad.",
-        coaches: [{ name: "Name", role: "Coach" }],
-      },
-      {
-        year: "2022",
-        title: "WorldMUN",
-        description:
-          "Regreso a la presencialidad con una participación histórica: Peruvian Universities se posiciona como subcampeón mundial.",
-        coaches: [{ name: "Name", role: "Head Coach" }],
-      },
-      {
-        year: "2025",
-        title: "WorldMUN",
-        description:
-          "El equipo continúa su legado de excelencia, preparándose para superar sus propios récords en una nueva edición de WorldMUN.",
-        coaches: [{ name: "Name", role: "Coach" }],
-      },
-      {
-        year: "2026",
-        title: "WorldMUN",
-        description:
-          "La próxima generación de líderes está lista. Peruvian Universities continúa representando al Perú con orgullo y excelencia.",
-        coaches: [{ name: "Name", role: "Coach" }],
-      },
+      { year: "2004", title: "WorldMUN", coachNames: ["Sandro Rodríguez"] },
+      { year: "2006", title: "WorldMUN", coachNames: ["Name"] },
+      { year: "2008", title: "WorldMUN", coachNames: ["Name"] },
+      { year: "2010", title: "WorldMUN", coachNames: ["Name"] },
+      { year: "2014", title: "WorldMUN", coachNames: ["Name"] },
+      { year: "2016", title: "WorldMUN", coachNames: ["Name"] },
+      { year: "2018", title: "WorldMUN", coachNames: ["Name"] },
+      { year: "2020", title: "WorldMUN (Virtual)", coachNames: ["Name"] },
+      { year: "2022", title: "WorldMUN", coachNames: ["Name"] },
+      { year: "2025", title: "WorldMUN", coachNames: ["Name"] },
+      { year: "2026", title: "WorldMUN", coachNames: ["Name"] },
     ],
   },
   HNMUN: {
     years: [
-      {
-        year: "2006",
-        title: "HNMUN",
-        description:
-          "Harvard National Model United Nations es una de las conferencias más reconocidas de la costa este de Estados Unidos. Peruvian Universities ha participado consistentemente, obteniendo premios y reconocimientos.",
-        coaches: [{ name: "Name", role: "Coach" }],
-      },
-      {
-        year: "2010",
-        title: "HNMUN",
-        description:
-          "Participación destacada en la conferencia HNMUN, con delegados premiados en comités de alto nivel.",
-        coaches: [{ name: "Name", role: "Lead Coach" }],
-      },
-      {
-        year: "2015",
-        title: "HNMUN",
-        description:
-          "El equipo consolida su posición en HNMUN con una de sus mejores actuaciones, obteniendo distinciones en múltiples comités.",
-        coaches: [{ name: "Name", role: "Director" }],
-      },
+      { year: "2006", title: "HNMUN", coachNames: ["Name"] },
+      { year: "2010", title: "HNMUN", coachNames: ["Name"] },
+      { year: "2015", title: "HNMUN", coachNames: ["Name"] },
     ],
   },
   HNMUNLA: {
     years: [
-      {
-        year: "2012",
-        title: "HNMUNLA",
-        description:
-          "Harvard National Model United Nations Latin America reúne a las mejores delegaciones de la región. Peruvian Universities es uno de los equipos más ganadores de esta conferencia.",
-        coaches: [{ name: "Name", role: "Coach" }],
-      },
-      {
-        year: "2018",
-        title: "HNMUNLA",
-        description:
-          "Participación sobresaliente con múltiples reconocimientos en una de las conferencias más competitivas de Latinoamérica.",
-        coaches: [{ name: "Name", role: "Lead Coach" }],
-      },
+      { year: "2012", title: "HNMUNLA", coachNames: ["Name"] },
+      { year: "2018", title: "HNMUNLA", coachNames: ["Name"] },
     ],
   },
   LIMUN: {
     years: [
-      {
-        year: "2008",
-        title: "LIMUN",
-        description:
-          "London International Model United Nations es una de las conferencias más antiguas y respetadas de Europa. Peruvian Universities ha competido con distinción en su histórica sede londinense.",
-        coaches: [{ name: "Name", role: "Coach" }],
-      },
-      {
-        year: "2019",
-        title: "LIMUN",
-        description:
-          "Una de las participaciones más memorables en Europa, con delegados reconocidos por su preparación y argumentación.",
-        coaches: [{ name: "Name", role: "Director" }],
-      },
+      { year: "2008", title: "LIMUN", coachNames: ["Name"] },
+      { year: "2019", title: "LIMUN", coachNames: ["Name"] },
     ],
   },
-};
+} satisfies Record<string, ConferenceData>;
 
-type ConferenceKey = keyof typeof conferences;
-const conferenceKeys = Object.keys(conferences) as ConferenceKey[];
+type ConferenceKey = keyof typeof conferenceMeta;
+const conferenceKeys = Object.keys(conferenceMeta) as ConferenceKey[];
 
 export default function ConferenceTabs() {
+  const { t } = useI18n();
   const [activeConference, setActiveConference] =
     useState<ConferenceKey>("WorldMUN");
   const [activeYearIndex, setActiveYearIndex] = useState(0);
@@ -185,8 +69,13 @@ export default function ConferenceTabs() {
   const trackedConferenceRef = useRef<ConferenceKey>("WorldMUN");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const conference = conferences[activeConference];
+  const conference = conferenceMeta[activeConference];
   const currentYear = conference.years[activeYearIndex];
+  const currentText = t.conferences.data[activeConference][activeYearIndex];
+  const currentCoaches = currentYear.coachNames.map((name, i) => ({
+    name,
+    role: currentText.roles[i],
+  }));
 
   function switchTo(key: ConferenceKey) {
     if (key === trackedConferenceRef.current) return;
@@ -286,7 +175,7 @@ export default function ConferenceTabs() {
                   {currentYear.title}
                 </h3>
                 <p className="font-body text-neutral-500 text-sm md:text-base leading-relaxed max-w-xl">
-                  {currentYear.description}
+                  {currentText.description}
                 </p>
               </div>
             </div>
@@ -294,10 +183,10 @@ export default function ConferenceTabs() {
             {/* Right: coach card fills the full column height (desktop only) */}
             <div className="hidden lg:flex flex-col pl-14 gap-4 min-h-0">
               <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500 shrink-0">
-                Coaches
+                {t.conferences.coachesLabel}
               </p>
               <div className="flex-1 min-h-0 flex flex-col gap-4">
-                {currentYear.coaches.map((coach) => {
+                {currentCoaches.map((coach) => {
                   const coachImage = "/assets/images/about/img-team-1.png";
 
                   return (
@@ -329,9 +218,9 @@ export default function ConferenceTabs() {
             {/* Mobile-only coaches (aspect-ratio based, below info) */}
             <div className="flex lg:hidden flex-col gap-3 mt-6">
               <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-500">
-                Coaches
+                {t.conferences.coachesLabel}
               </p>
-              {currentYear.coaches.map((coach) => {
+              {currentCoaches.map((coach) => {
                 const coachImage = "/assets/images/about/img-team-1.png";
 
                 return (

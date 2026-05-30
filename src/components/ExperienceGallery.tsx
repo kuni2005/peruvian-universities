@@ -2,8 +2,11 @@
 
 import { useCallback, useEffect, useState } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
+import { useI18n } from "@/i18n/LanguageProvider";
 
-type FilterKey = "Todos" | "MUN" | "Conferencias" | "Competencias";
+// Stable category keys so filtering is language-independent. Display labels and
+// per-item event/title text come from the i18n dictionary at `experience`.
+type FilterKey = "all" | "mun" | "conferences" | "competitions";
 
 type GalleryItem = {
   id: number;
@@ -14,16 +17,16 @@ type GalleryItem = {
   large: boolean;
 };
 
-const items: GalleryItem[] = [
-  { id: 1, category: "MUN", event: "Harvard WorldMUN 2024", title: "Lima, Perú", img: "/assets/images/experience/img-experience-1.JPG", large: true },
-  { id: 2, category: "Conferencias", event: "ONU Lima 2023", title: "Conferencia anual", img: "/assets/images/experience/img-experience-2.JPG", large: false },
-  { id: 3, category: "Competencias", event: "Workshop 2024", title: "Debate intensivo", img: "/assets/images/experience/img-experience-3.JPG", large: false },
-  { id: 4, category: "MUN", event: "HNMUN 2023", title: "Boston, USA", img: "/assets/images/experience/img-experience-4.JPG", large: false },
-  { id: 5, category: "Conferencias", event: "PeruMUN 2024", title: "Lima, Perú", img: "/assets/images/about/img-team-1.png", large: false },
-  { id: 6, category: "Competencias", event: "Simulación 2022", title: "Competencia interna", img: "/assets/images/about/img-year.JPG", large: false },
+const itemsMeta: { id: number; category: FilterKey; img: string; large: boolean }[] = [
+  { id: 1, category: "mun", img: "/assets/images/experience/img-experience-1.JPG", large: true },
+  { id: 2, category: "conferences", img: "/assets/images/experience/img-experience-2.JPG", large: false },
+  { id: 3, category: "competitions", img: "/assets/images/experience/img-experience-3.JPG", large: false },
+  { id: 4, category: "mun", img: "/assets/images/experience/img-experience-4.JPG", large: false },
+  { id: 5, category: "conferences", img: "/assets/images/about/img-team-1.png", large: false },
+  { id: 6, category: "competitions", img: "/assets/images/about/img-year.JPG", large: false },
 ];
 
-const filters: FilterKey[] = ["Todos", "MUN", "Conferencias", "Competencias"];
+const filters: FilterKey[] = ["all", "mun", "conferences", "competitions"];
 
 // ─── Shared overlay ───────────────────────────────────────────────────────────
 
@@ -50,6 +53,7 @@ function GalleryModal({
   startIndex: number;
   onClose: () => void;
 }) {
+  const { t } = useI18n();
   const [current, setCurrent] = useState(startIndex);
   const [visible, setVisible] = useState(true);
 
@@ -109,7 +113,7 @@ function GalleryModal({
             </span>
             <button
               onClick={onClose}
-              aria-label="Cerrar"
+              aria-label={t.experience.close}
               className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
             >
               <svg
@@ -147,7 +151,7 @@ function GalleryModal({
             <>
               <button
                 onClick={() => go("prev")}
-                aria-label="Anterior"
+                aria-label={t.common.previous}
                 className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm flex items-center justify-center transition-colors group"
               >
                 <svg
@@ -166,7 +170,7 @@ function GalleryModal({
               </button>
               <button
                 onClick={() => go("next")}
-                aria-label="Siguiente"
+                aria-label={t.common.next}
                 className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm flex items-center justify-center transition-colors group"
               >
                 <svg
@@ -296,11 +300,19 @@ function ExtraItems({
 // ─── Main gallery ─────────────────────────────────────────────────────────────
 
 export default function ExperienceGallery() {
-  const [active, setActive] = useState<FilterKey>("Todos");
+  const { t } = useI18n();
+  const [active, setActive] = useState<FilterKey>("all");
   const [modalIndex, setModalIndex] = useState<number | null>(null);
 
+  // Merge structural meta with localized event/title text (same order).
+  const items: GalleryItem[] = itemsMeta.map((m, i) => ({
+    ...m,
+    event: t.experience.items[i].event,
+    title: t.experience.items[i].title,
+  }));
+
   const filtered =
-    active === "Todos" ? items : items.filter((i) => i.category === active);
+    active === "all" ? items : items.filter((i) => i.category === active);
 
   const [first, ...rest] = filtered;
   const extras = rest.slice(2);
@@ -325,7 +337,7 @@ export default function ExperienceGallery() {
                   : "text-neutral-400 hover:text-neutral-700"
               }`}
             >
-              {f}
+              {t.experience.filters[f]}
             </button>
           ))}
         </div>
@@ -333,7 +345,7 @@ export default function ExperienceGallery() {
         {/* Gallery grid */}
         {filtered.length === 0 ? (
           <p className="font-body text-neutral-400 text-sm py-12 text-center">
-            No hay elementos en esta categoría.
+            {t.experience.empty}
           </p>
         ) : (
           <div className="flex flex-col gap-4">

@@ -1,10 +1,14 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import HistoryTimeline from "@/components/HistoryTimeline";
 import TeamCarousel from "@/components/TeamCarousel";
 import ColorStripe from "@/components/ColorStripe";
+import { useI18n } from "@/i18n/LanguageProvider";
 
 export default function AboutPage() {
+  const { t } = useI18n();
   return (
     <>
       <main className="flex-1 bg-white">
@@ -22,15 +26,11 @@ export default function AboutPage() {
               <div className="min-h-[60svh] md:min-h-[65svh] flex items-end">
                 <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
                   <h1 className="md:col-span-7 font-bebas uppercase leading-[0.9] text-5xl md:text-7xl lg:text-8xl">
-                    Impulsando el liderazgo desde el Perú hacia el mundo
+                    {t.about.heroTitle}
                   </h1>
                   <div className="md:col-span-5 md:justify-self-end max-w-md">
                     <p className="font-body text-white/80 text-sm md:text-base leading-relaxed">
-                      Peruvian Universities es una organización estudiantil que
-                      trabaja en la formación de líderes a través del debate
-                      académico y la participación en Model United Nations.
-                      Representamos al Perú en escenarios internacionales con
-                      excelencia, preparación y visión global.
+                      {t.about.heroText}
                     </p>
                   </div>
                 </div>
@@ -55,12 +55,10 @@ export default function AboutPage() {
               </p>
               <div className="max-w-sm">
                 <p className="font-bebas uppercase text-neutral-900 text-2xl md:text-3xl lg:text-4xl leading-tight">
-                  AÑOS DE EXPERIENCIA
+                  {t.about.yearsLabel}
                 </p>
                 <p className="font-body text-neutral-500 text-sm md:text-base leading-relaxed mt-3">
-                  A lo largo de los años, hemos consolidado un sistema de
-                  formación que combina entrenamiento académico, pensamiento
-                  estratégico y desarrollo personal.
+                  {t.about.yearsBody}
                 </p>
               </div>
             </div>
@@ -77,26 +75,13 @@ export default function AboutPage() {
           </span>
           <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 relative">
             <p className="font-condensed text-xs font-bold uppercase tracking-widest text-pu-cyan/70 mb-4">
-              Nuestra esencia
+              {t.about.essenceLabel}
             </p>
             <h2 className="font-bebas uppercase text-5xl leading-[0.95] mb-10 max-w-4xl">
-              Una comunidad que trasciende el debate
+              {t.about.essenceHeading}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 border-t border-white/15 divide-y md:divide-y-0 md:divide-x divide-white/15">
-              {[
-                {
-                  title: "Misión",
-                  body: "Desarrollar a nuestros miembros habilidades clave como liderazgo, pensamiento crítico y comunicación efectiva, preparándolos para representar al Perú en escenarios internacionales y generar impacto en sus entornos.",
-                },
-                {
-                  title: "Visión",
-                  body: "Consolidarnos como una de las organizaciones estudiantiles más influyentes de la región, reconocida por la excelencia de sus delegados y por su contribución al desarrollo de líderes comprometidos con el mundo.",
-                },
-                {
-                  title: "Valores",
-                  body: "Nos regimos por la excelencia, el compromiso, la integridad y la colaboración. Creemos en el poder del diálogo, el respeto por la diversidad de ideas y la responsabilidad de generar un cambio positivo en la sociedad.",
-                },
-              ].map((card) => (
+              {t.about.cards.map((card) => (
                 <div key={card.title} className="py-12 md:py-14 md:px-10 flex flex-col justify-start items-start min-h-80 md:min-h-90 h-full">
                   <h3 className="font-bebas uppercase text-2xl md:text-3xl text-white tracking-wide">
                     {card.title}
@@ -119,32 +104,28 @@ export default function AboutPage() {
         {/* Board of Directors */}
         <section className="mx-auto max-w-7xl px-6 pb-20 md:pb-28">
           <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3">
-            Nuestro equipo
+            {t.about.teamLabel}
           </p>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
             <div>
               <h2 className="font-bebas uppercase text-3xl md:text-4xl leading-[0.95]">
-                Board of Directors and Preparation Teams
+                {t.about.teamHeading}
               </h2>
               <p className="font-body text-neutral-500 text-sm mt-4 max-w-xl leading-relaxed">
-                Nuestro Board of Directors y equipos de preparación están
-                conformados por profesionales y alumni con experiencia en
-                conferencias internacionales. Ellos guían el desarrollo de cada
-                miembro, asegurando un entrenamiento de alto nivel y una
-                preparación integral.
+                {t.about.teamBody}
               </p>
             </div>
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                aria-label="Anterior"
+                aria-label={t.common.previous}
                 className="h-9 w-9 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:border-neutral-900 transition-colors"
               >
                 ←
               </button>
               <button
                 type="button"
-                aria-label="Siguiente"
+                aria-label={t.common.next}
                 className="h-9 w-9 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:border-neutral-900 transition-colors"
               >
                 →

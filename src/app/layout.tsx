@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Open_Sans, Heebo } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import LanguageProvider from "@/i18n/LanguageProvider";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -38,8 +39,10 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${openSans.variable} ${heebo.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-white text-neutral-900 font-body">
-        {children}
-        <Footer />
+        <LanguageProvider>
+          {children}
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -4,13 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Logo from "./Logo";
-
-const navLinks = [
-  { href: "/about", label: "About us" },
-  { href: "/accion-peru", label: "Acción Perú" },
-  { href: "/conferences", label: "Our Conferences" },
-  { href: "/experience", label: "The experience" },
-];
+import LanguageToggle from "./LanguageToggle";
+import { useI18n } from "@/i18n/LanguageProvider";
 
 interface NavbarProps {
   variant?: "solid" | "transparent";
@@ -25,8 +20,17 @@ export default function Navbar({
   className = "",
 }: NavbarProps) {
   const pathname = usePathname();
+  const { t } = useI18n();
   const [mobileOpen, setMobileOpen] = useState(false);
   const isTransparent = variant === "transparent";
+  const toggleTone: "light" | "dark" =
+    isTransparent && !darkOnTransparent ? "light" : "dark";
+  const navLinks = [
+    { href: "/about", label: t.nav.about },
+    { href: "/accion-peru", label: t.nav.accionPeru },
+    { href: "/conferences", label: t.nav.conferences },
+    { href: "/experience", label: t.nav.experience },
+  ];
   const headerClasses = `w-full px-4 pt-4 pb-2 z-50 ${
     isTransparent ? "absolute left-0 right-0 top-0" : ""
   } ${className}`;
@@ -87,33 +91,39 @@ export default function Navbar({
           ))}
         </ul>
 
-        <Link href="/about" className={`${buttonClasses} ${clickAnim}`}>
-          Conócenos
-        </Link>
+        <div className="hidden md:flex items-center gap-5">
+          <LanguageToggle tone={toggleTone} />
+          <Link href="/about" className={`${buttonClasses} ${clickAnim}`}>
+            {t.nav.cta}
+          </Link>
+        </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col gap-1 p-2"
-          onClick={() => setMobileOpen((o) => !o)}
-          aria-label="Abrir menú"
-          aria-expanded={mobileOpen}
-        >
-          <span
-            className={`block w-6 h-0.5 ${
-              isTransparent ? "bg-white" : "bg-neutral-900"
-            } transition-transform ${mobileOpen ? "rotate-45 translate-y-1.5" : ""}`}
-          />
-          <span
-            className={`block w-6 h-0.5 ${
-              isTransparent ? "bg-white" : "bg-neutral-900"
-            } transition-opacity ${mobileOpen ? "opacity-0" : ""}`}
-          />
-          <span
-            className={`block w-6 h-0.5 ${
-              isTransparent ? "bg-white" : "bg-neutral-900"
-            } transition-transform ${mobileOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
-          />
-        </button>
+        {/* Mobile controls — language toggle always visible beside the hamburger */}
+        <div className="md:hidden flex items-center gap-4">
+          <LanguageToggle tone={toggleTone} />
+          <button
+            className="flex flex-col gap-1 p-2"
+            onClick={() => setMobileOpen((o) => !o)}
+            aria-label={t.nav.openMenu}
+            aria-expanded={mobileOpen}
+          >
+            <span
+              className={`block w-6 h-0.5 ${
+                isTransparent ? "bg-white" : "bg-neutral-900"
+              } transition-transform ${mobileOpen ? "rotate-45 translate-y-1.5" : ""}`}
+            />
+            <span
+              className={`block w-6 h-0.5 ${
+                isTransparent ? "bg-white" : "bg-neutral-900"
+              } transition-opacity ${mobileOpen ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`block w-6 h-0.5 ${
+                isTransparent ? "bg-white" : "bg-neutral-900"
+              } transition-transform ${mobileOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+            />
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -143,7 +153,7 @@ export default function Navbar({
                 } text-white font-condensed text-sm font-bold px-5 py-2 rounded-full`}
                 onClick={() => setMobileOpen(false)}
               >
-                Conócenos
+                {t.nav.cta}
               </Link>
             </li>
           </ul>
