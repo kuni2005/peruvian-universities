@@ -53,20 +53,30 @@ export default function Navbar({
     : "hidden md:inline-flex items-center bg-pu-cyan text-white font-condensed text-sm font-bold px-5 py-2 rounded-full hover:brightness-110 transition";
   const mobileMenuClasses = isTransparent
     ? darkOnTransparent
-      ? "md:hidden mt-2 mx-auto max-w-7xl bg-white/95 rounded-2xl shadow-lg px-6 py-5"
-      : "md:hidden mt-2 mx-auto max-w-7xl bg-pu-dark/95 backdrop-blur rounded-2xl shadow-lg px-6 py-5"
-    : "md:hidden mt-2 mx-auto max-w-7xl bg-white rounded-2xl shadow-sm px-6 py-5";
+      ? "md:hidden mt-2 mx-auto max-w-7xl rounded-3xl border border-neutral-200/80 bg-white/95 shadow-2xl shadow-black/10 backdrop-blur-xl px-5 py-5"
+      : "md:hidden mt-2 mx-auto max-w-7xl rounded-3xl border border-white/10 bg-slate-950/85 shadow-2xl shadow-black/30 backdrop-blur-xl px-5 py-5"
+    : "md:hidden mt-2 mx-auto max-w-7xl rounded-3xl border border-neutral-200/80 bg-white/95 shadow-2xl shadow-black/10 backdrop-blur-xl px-5 py-5";
   const mobileBaseClasses = "font-condensed text-sm font-semibold transition duration-150 ease-out";
   const mobileLinkClasses = isTransparent
     ? darkOnTransparent
-      ? "text-neutral-900 hover:text-neutral-700"
+      ? "text-neutral-900/75 hover:text-neutral-950"
       : "text-white/80 hover:text-white"
-    : "text-neutral-500 hover:text-neutral-900";
+    : "text-neutral-600 hover:text-neutral-900";
   const mobileLinkActiveClasses = isTransparent
     ? darkOnTransparent
-      ? "text-neutral-900"
-      : "text-white"
-    : "text-neutral-900";
+      ? "text-neutral-950 bg-neutral-900/5"
+      : "text-white bg-white/10"
+    : "text-neutral-950 bg-neutral-900/[0.04]";
+  const mobileCtaClasses = isTransparent
+    ? darkOnTransparent
+      ? "bg-pu-cyan text-white shadow-lg shadow-pu-cyan/20 hover:brightness-110"
+      : "bg-gradient-to-r from-pu-cyan to-cyan-400 text-white shadow-lg shadow-pu-cyan/30 hover:brightness-110"
+    : "bg-pu-dark text-white shadow-lg shadow-black/10 hover:bg-pu-dark/90";
+  const mobileToggleSurface = isTransparent
+    ? darkOnTransparent
+      ? "bg-white/75 hover:bg-white text-neutral-900 ring-1 ring-neutral-200/80"
+      : "bg-white/10 hover:bg-white/15 text-white ring-1 ring-white/10"
+    : "bg-neutral-100 hover:bg-neutral-200 text-neutral-900 ring-1 ring-neutral-200";
 
   return (
     <header className={headerClasses}>
@@ -102,25 +112,25 @@ export default function Navbar({
         <div className="md:hidden flex items-center gap-4">
           <LanguageToggle tone={toggleTone} />
           <button
-            className="flex flex-col gap-1 p-2"
+            className={`flex flex-col gap-1.5 rounded-full p-2.5 transition duration-150 ease-out ${mobileToggleSurface}`}
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={t.nav.openMenu}
             aria-expanded={mobileOpen}
           >
             <span
               className={`block w-6 h-0.5 ${
-                isTransparent ? "bg-white" : "bg-neutral-900"
-              } transition-transform ${mobileOpen ? "rotate-45 translate-y-1.5" : ""}`}
+                isTransparent && !darkOnTransparent ? "bg-white" : "bg-neutral-900"
+              } rounded-full transition-transform ${mobileOpen ? "rotate-45 translate-y-1.5" : ""}`}
             />
             <span
               className={`block w-6 h-0.5 ${
-                isTransparent ? "bg-white" : "bg-neutral-900"
-              } transition-opacity ${mobileOpen ? "opacity-0" : ""}`}
+                isTransparent && !darkOnTransparent ? "bg-white" : "bg-neutral-900"
+              } rounded-full transition-opacity ${mobileOpen ? "opacity-0" : ""}`}
             />
             <span
               className={`block w-6 h-0.5 ${
-                isTransparent ? "bg-white" : "bg-neutral-900"
-              } transition-transform ${mobileOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+                isTransparent && !darkOnTransparent ? "bg-white" : "bg-neutral-900"
+              } rounded-full transition-transform ${mobileOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
             />
           </button>
         </div>
@@ -129,12 +139,12 @@ export default function Navbar({
       {/* Mobile menu */}
       {mobileOpen && (
         <div className={mobileMenuClasses}>
-          <ul className="flex flex-col gap-5">
+          <ul className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`${mobileBaseClasses} ${clickAnim} ${
+                  className={`block rounded-2xl px-4 py-3 ${mobileBaseClasses} ${clickAnim} ${
                     pathname === link.href
                       ? mobileLinkActiveClasses
                       : mobileLinkClasses
@@ -148,9 +158,7 @@ export default function Navbar({
             <li>
               <Link
                 href="/about"
-                className={`block text-center ${clickAnim} ${
-                  isTransparent ? "bg-pu-cyan" : "bg-neutral-900"
-                } text-white font-condensed text-sm font-bold px-5 py-2 rounded-full`}
+                className={`block text-center rounded-full px-5 py-3 font-condensed text-sm font-bold ${clickAnim} ${mobileCtaClasses}`}
                 onClick={() => setMobileOpen(false)}
               >
                 {t.nav.cta}
