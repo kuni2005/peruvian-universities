@@ -63,6 +63,9 @@ export default function ConferenceTabs() {
     useState<ConferenceKey>("WorldMUN");
   const [activeYearIndex, setActiveYearIndex] = useState(0);
   const [contentVisible, setContentVisible] = useState(true);
+  // The scroll-driven swap is a desktop-only effect. On mobile it just makes
+  // the section confusingly tall, so we fall back to a normal tap-driven layout.
+  const [isDesktop, setIsDesktop] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   // Tracks last-applied conference so the scroll listener (mounted once) avoids stale closures
@@ -89,9 +92,20 @@ export default function ConferenceTabs() {
     }, 220);
   }
 
+  // Track the md breakpoint to enable/disable the scroll-driven behavior.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   useEffect(() => {
     const keys = conferenceKeys;
     const onScroll = () => {
+      // Only swap on scroll for the desktop pinned layout.
+      if (!window.matchMedia("(min-width: 768px)").matches) return;
       const el = containerRef.current;
       if (!el) return;
       const { top, height } = el.getBoundingClientRect();
@@ -111,13 +125,21 @@ export default function ConferenceTabs() {
   return (
     <div
       ref={containerRef}
-      style={{ height: `calc(${conferenceKeys.length} * 100svh)` }}
+      style={
+        isDesktop
+          ? { height: `calc(${conferenceKeys.length} * 100svh)` }
+          : undefined
+      }
     >
       <div
-        className="sticky top-0 overflow-hidden"
-        style={{ height: "100svh" }}
+        className={isDesktop ? "sticky top-0 overflow-hidden" : "relative"}
+        style={isDesktop ? { height: "100svh" } : undefined}
       >
-        <div className="h-full flex flex-col pt-12 pb-8 md:pt-16 md:pb-12">
+        <div
+          className={`flex flex-col pt-12 pb-8 md:pt-16 md:pb-12 ${
+            isDesktop ? "h-full" : ""
+          }`}
+        >
 
           {/* Conference type tabs — driven by scroll, also clickable */}
           <div className="overflow-x-auto shrink-0">
@@ -159,7 +181,9 @@ export default function ConferenceTabs() {
 
           {/* Conference detail — 2-column editorial layout, fades when conference changes */}
           <div
-            className={`mt-8 flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[3fr_2fr] overflow-hidden transition-all ease-out ${
+            className={`mt-8 grid grid-cols-1 lg:grid-cols-[3fr_2fr] transition-all ease-out ${
+              isDesktop ? "flex-1 min-h-0 overflow-hidden" : ""
+            } ${
               contentVisible
                 ? "opacity-100 translate-y-0 duration-220"
                 : "opacity-0 translate-y-4 duration-120"
