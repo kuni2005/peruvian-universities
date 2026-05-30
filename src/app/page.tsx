@@ -124,7 +124,14 @@ export default function HomePage() {
                     </div>
                     <div className="border-t border-white/15 mt-6 pt-4 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-full bg-white/20 shrink-0" />
+                        <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-white/15 bg-white/10">
+                          <ImagePlaceholder
+                            src="/assets/images/about/img-team-1.png"
+                            alt="Juani Mun"
+                            aspectRatio=""
+                            className="w-full h-full"
+                          />
+                        </div>
                         <div>
                           <p className="font-condensed font-bold text-white text-xs uppercase tracking-wider">
                             {t.home.munQuoteName}
@@ -170,7 +177,7 @@ export default function HomePage() {
                 {t.home.skillsHeading}
               </h2>
             </div>
-            <div className="flex-1 border-t border-neutral-200" />
+            <div className="md:hidden flex-1 border-t border-neutral-200" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-5">
@@ -182,7 +189,7 @@ export default function HomePage() {
               />
             </div>
             <div className="md:col-span-7">
-              <p className="font-body text-neutral-600 text-md leading-relaxed mb-6">
+              <p className="font-body text-neutral-600 text-sm leading-relaxed mb-6">
                 {t.home.skillsBody1}
               </p>
               <p className="font-body text-neutral-600 text-sm md:text-base leading-relaxed mb-6">

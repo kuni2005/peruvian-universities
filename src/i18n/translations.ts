@@ -50,8 +50,8 @@ const es = {
     ],
     munQuote:
       "Siempre he sentido que el beneficio que me ha dado ser parte de PU es una deuda que no podré pagar. Al ser parte del equipo, debatir y dar lo mejor de ti, así como asumir nuevos retos dentro del equipo, esperas poder brindarles a los nuevos miembros la misma experiencia que tú has tenido, o incluso una mejor.",
-    munQuoteName: "Miranda Paz",
-    munQuoteRole: "Delegada de segundo año",
+    munQuoteName: "Juani Mun",
+    munQuoteRole: "Delegado de segundo año",
     skillsLabel: "Qué hacemos",
     skillsHeading: "Desarrollamos habilidades para impactar el mundo",
     skillsBody1:
@@ -372,7 +372,7 @@ const es = {
     phoneLabel: "Teléfono",
     description:
       "Peruvian Universities es una comunidad dedicada a promover el diálogo académico y la participación estudiantil a través de conferencias, proyectos y programas formativos en Perú. Ponte en contacto para colaborar o participar.",
-    poweredBy: "Powered by",
+    poweredBy: "Powered by Virtuolabs",
   },
 
   contactForm: {
@@ -423,7 +423,7 @@ const en: Dictionary = {
     ],
     munQuote:
       "I have always felt that the benefit that being part of PU has given me is a debt that I will not be able to pay. By being part of the team, debating and giving your best, as well as taking on new challenges within the team, you hope to give new members the same experience you have had, or even a better one.",
-    munQuoteName: "Miranda Paz",
+    munQuoteName: "Juani Mun",
     munQuoteRole: "Sophomore Delegate",
     skillsLabel: "What we do",
     skillsHeading: "We develop skills to impact the world",
@@ -743,7 +743,7 @@ const en: Dictionary = {
     phoneLabel: "Phone",
     description:
       "Peruvian Universities is a community dedicated to promoting academic dialogue and student participation through conferences, projects and training programs in Peru. Get in touch to collaborate or take part.",
-    poweredBy: "Powered by",
+    poweredBy: "Powered by Virtuolabs",
   },
 
   contactForm: {

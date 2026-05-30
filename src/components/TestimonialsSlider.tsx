@@ -7,7 +7,7 @@ import { useI18n } from "@/i18n/LanguageProvider";
 // Names + photos are structural; quote/role text comes from the i18n
 // dictionary at `experience.testimonials` (same order).
 const testimonialsMeta = [
-  { name: "Miranda Paz", img: "/assets/images/testimonials/miranda-paz.jpg" },
+  { name: "Juani Mun", img: "/assets/images/testimonials/miranda-paz.jpg" },
   { name: "Rodrigo Alva", img: "/assets/images/testimonials/rodrigo-alva.jpg" },
   { name: "Valeria Flores", img: "/assets/images/testimonials/valeria-flores.jpg" },
 ];
