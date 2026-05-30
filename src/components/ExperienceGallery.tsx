@@ -270,18 +270,19 @@ function ExtraItems({
     );
   }
 
-  // 3 extras → 3-col equal grid
+  // 3 extras → 2-col on mobile, 3-col on desktop
   if (extras.length === 3) {
     return (
-      <div className="grid grid-cols-3 gap-4">
-        {extras.map((item) => overlayCard(item, "aspect-4/3"))}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {extras.slice(0, 2).map((item) => overlayCard(item, "aspect-4/3"))}
+        <div className="hidden md:block">{overlayCard(extras[2], "aspect-4/3")}</div>
       </div>
     );
   }
 
   // 4+ extras → grid (no horizontal carousel)
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3  gap-4">
       {extras.map((item) => (
         <div key={item.id} className={`${cardClass} ${"aspect-4/3"}`} onClick={() => onItemClick(item)}>
           <ImagePlaceholder

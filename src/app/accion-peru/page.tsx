@@ -16,7 +16,7 @@ export default function AccionPeruPage() {
           <Navbar variant="solid" />
         </section>
         {/* Mission statement */}
-        <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+        <section className="mx-auto max-w-7xl px-6 py-12 md:py-24">
           <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">
             {t.accionPeru.proposalLabel}
           </p>
@@ -62,21 +62,21 @@ export default function AccionPeruPage() {
 
         {/* Collab Beneficencia de Lima */}
         <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-          <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">
+          <p className="font-condensed text-xs font-bold uppercase tracking-[0.24em] text-neutral-400 mb-4">
             {t.accionPeru.partnersLabel}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start mb-12">
-            <h2 className="md:col-span-6 font-bebas uppercase text-3xl md:text-4xl lg:text-5xl leading-[0.95]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start mb-12">
+            <h2 className="md:col-span-6 font-bebas uppercase text-4xl md:text-4xl lg:text-5xl leading-[0.9] max-w-md">
               {t.accionPeru.partnersHeading}
             </h2>
-            <p className="md:col-span-6 font-body text-neutral-600 text-sm md:text-base leading-relaxed md:pt-2">
+            <p className="md:col-span-6 font-body text-neutral-600 text-sm md:text-base leading-relaxed md:pt-2 max-w-xl">
               {t.accionPeru.partnersBody}
             </p>
           </div>
 
           {/* Stats grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="col-span-2 rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 items-stretch">
+            <div className="md:col-span-2 rounded-[1.75rem] overflow-hidden shadow-sm min-h-56 md:min-h-0">
               <ImagePlaceholder
                 src="/assets/images/accion/img-municipalidad.png"
                 alt="Colaboración Beneficencia de Lima"
@@ -84,48 +84,48 @@ export default function AccionPeruPage() {
                 className="rounded-2xl"
               />
             </div>
-            <div className="bg-pu-dark rounded-2xl p-8 flex flex-col justify-between min-h-56">
-              <p className="font-bebas text-5xl text-white">+10</p>
-              <p className="font-body text-white/70 text-xs mt-2 leading-snug">
+            <div className="bg-pu-dark rounded-[1.75rem] p-7 sm:p-8 flex flex-col justify-between min-h-52 sm:min-h-56 shadow-sm">
+              <p className="font-bebas text-6xl text-white leading-none">+10</p>
+              <p className="font-body text-white/72 text-xs mt-4 leading-snug max-w-[16rem] md:max-w-none">
                 {t.accionPeru.statProjects}
               </p>
             </div>
-            <div className="rounded-2xl border border-neutral-200 bg-white p-8 flex flex-col justify-between min-h-56 shadow-sm">
-              <p className="font-condensed text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">
+            <div className="rounded-[1.75rem] border border-neutral-200 bg-white p-7 sm:p-8 flex flex-col justify-between min-h-52 sm:min-h-56 shadow-sm">
+              <p className="font-condensed text-[11px] font-bold uppercase tracking-[0.24em] text-neutral-400 mb-4">
                 {t.accionPeru.statActivitiesLabel}
               </p>
-              <p className="font-bebas text-5xl text-pu-cyan leading-none mb-3">
+              <p className="font-bebas text-6xl text-pu-cyan leading-none mb-3">
                 18
               </p>
-              <p className="font-body text-neutral-600 text-xs leading-snug">
+              <p className="font-body text-neutral-600 text-xs leading-snug max-w-60 md:max-w-none">
                 {t.accionPeru.statActivitiesBody}
               </p>
             </div>
-            <div className="col-span-2 bg-pu-cyan rounded-2xl p-8 flex flex-col justify-between text-white min-h-56">
-              <p className="font-bebas text-5xl text-white">95%</p>
-              <p className="font-body text-white/90 text-xs mt-2 leading-snug">
+            <div className="md:col-span-2 bg-pu-cyan rounded-[1.75rem] p-7 sm:p-8 flex flex-col justify-between text-white min-h-52 sm:min-h-56 shadow-sm">
+              <p className="font-bebas text-6xl text-white leading-none">95%</p>
+              <p className="font-body text-white/90 text-xs mt-4 leading-snug max-w-md md:max-w-none">
                 {t.accionPeru.statMembers}
               </p>
             </div>
-            <div className="rounded-2xl bg-pu-dark p-8 flex flex-col justify-between min-h-56 shadow-sm text-white">
-              <p className="font-condensed text-xs font-bold uppercase tracking-widest text-white/60 mb-4">
+            <div className="rounded-[1.75rem] bg-pu-dark p-7 sm:p-8 flex flex-col justify-between min-h-52 sm:min-h-56 shadow-sm text-white">
+              <p className="font-condensed text-[11px] font-bold uppercase tracking-[0.24em] text-white/60 mb-4">
                 {t.accionPeru.statVolunteeringLabel}
               </p>
-              <p className="font-bebas text-5xl text-white leading-none mb-3">
+              <p className="font-bebas text-6xl text-white leading-none mb-3">
                 36
               </p>
-              <p className="font-body text-white/75 text-xs leading-snug">
+              <p className="font-body text-white/75 text-xs leading-snug max-w-[16rem] md:max-w-none">
                 {t.accionPeru.statVolunteeringBody}
               </p>
             </div>
-            <div className="rounded-2xl border border-pu-cyan/25 bg-pu-cyan/10 p-8 flex flex-col justify-between min-h-56 shadow-sm">
-              <p className="font-condensed text-xs font-bold uppercase tracking-widest text-pu-dark mb-4">
+            <div className="rounded-[1.75rem] border border-pu-cyan/25 bg-pu-cyan/10 p-7 sm:p-8 flex flex-col justify-between min-h-52 sm:min-h-56 shadow-sm">
+              <p className="font-condensed text-[11px] font-bold uppercase tracking-[0.24em] text-pu-dark mb-4">
                 {t.accionPeru.statReachLabel}
               </p>
-              <p className="font-bebas text-5xl text-pu-dark leading-none mb-3">
+              <p className="font-bebas text-6xl text-pu-dark leading-none mb-3">
                 2026
               </p>
-              <p className="font-body text-neutral-700 text-xs leading-snug">
+              <p className="font-body text-neutral-700 text-xs leading-snug max-w-[16rem] md:max-w-none">
                 {t.accionPeru.statReachBody}
               </p>
             </div>

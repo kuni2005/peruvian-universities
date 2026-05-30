@@ -191,7 +191,7 @@ export default function ConferenceTabs() {
           >
             {/* Left: giant year at top, title + description pinned to bottom */}
             <div className="lg:pr-14 lg:border-r lg:border-neutral-200 flex flex-col gap-6 lg:gap-0 lg:justify-between overflow-hidden">
-              <p className="font-bebas mt-10 text-[9rem] sm:text-[11rem] md:text-[13rem] lg:text-[15rem] text-pu-dark leading-[0.88] -ml-1">
+              <p className="font-bebas md:mt-10 text-[9rem] sm:text-[11rem] md:text-[13rem] lg:text-[15rem] text-pu-dark leading-[0.88] -ml-1">
                 {currentYear.year}
               </p>
               <div className="flex flex-col gap-4 pb-2">
