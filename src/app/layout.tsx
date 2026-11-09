@@ -1,25 +1,30 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Open_Sans, Heebo } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import LanguageProvider from "@/i18n/LanguageProvider";
 
-const bebasNeue = Bebas_Neue({
+// Fonts are self-hosted (src/app/fonts) so the build doesn't depend on
+// downloading from Google Fonts, which was failing on Vercel.
+const bebasNeue = localFont({
+  src: "./fonts/BebasNeue-Regular.woff2",
   weight: "400",
   variable: "--font-bebas-neue",
-  subsets: ["latin"],
+  display: "swap",
 });
 
-const openSans = Open_Sans({
-  weight: ["400", "600", "700"],
+const openSans = localFont({
+  src: "./fonts/OpenSans-Variable.woff2",
+  weight: "400 700",
   variable: "--font-open-sans",
-  subsets: ["latin"],
+  display: "swap",
 });
 
-const heebo = Heebo({
-  weight: ["400", "500", "600", "700"],
+const heebo = localFont({
+  src: "./fonts/Heebo-Variable.woff2",
+  weight: "400 700",
   variable: "--font-heebo",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
